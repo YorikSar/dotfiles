@@ -19,3 +19,4 @@ if !&diff
 endif
 au InsertEnter * let b:oldfdm = &l:fdm | setlocal fdm=manual
 au InsertLeave * let &l:fdm = b:oldfdm
+colorscheme torte
