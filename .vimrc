@@ -1,3 +1,7 @@
+if has('gui')
+    set guioptions-=m
+    set guioptions-=T
+endif
 call pathogen#infect()
 autocmd VimEnter * call add(NERDTreeIgnore, '\.pyc$')
 autocmd VimEnter * NERDTree
