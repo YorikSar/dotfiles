@@ -1,6 +1,19 @@
 # -*- Mode: Shell-Script -*-  Not really, but shows comments correctly
 
+colors Linux
 confirm_exit 0
 banner 0
 messages 0
+readline 1
+readline_parse_and_bind tab: complete
+readline_parse_and_bind set show-all-if-ambiguous yes
+readline_parse_and_bind "\C-r": reverse-search-history
+readline_parse_and_bind "\C-s": forward-search-history
+readline_parse_and_bind "\C-p": history-search-backward
+readline_parse_and_bind "\C-n": history-search-forward
+readline_parse_and_bind "\e[A": history-search-backward
+readline_parse_and_bind "\e[B": history-search-forward
+readline_remove_delims -/~
+readline_merge_completions 1
+readline_omit__names 1
 readline_omit__names 1
