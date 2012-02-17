@@ -1,5 +1,19 @@
 [user]
-	name = Yuriy Taraday
-	email = yorik.sar@gmail.com
+    name = Yuriy Taraday
+    email = yorik.sar@gmail.com
 [core]
     excludesfile = ~/.gitignore
+[alias]
+    review = !sh `git rev-parse --show-toplevel`/tools/rfc.sh
+    st = status
+    cm = commit -m
+    cam = commit -a -m
+    br = branch
+    co = checkout
+    df = diff
+    lg = log -p
+    who = shortlog -s --
+[color]
+    diff = auto
+    status = auto
+    branch = auto
