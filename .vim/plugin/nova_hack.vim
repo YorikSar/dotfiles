@@ -13,10 +13,6 @@ function CheckHack(all)
         let l:file_list.=expand("nova/**/*.py")."\n"
         let l:file_list.=expand("tools/**/*.py")
         let l:file_list=substitute(l:file_list, "[^\n]*/migrate_repo/[^\n]*\n", "", "g")
-        if match(l:file_list, "migrate_repo") != -1
-            echo "BADBADBOY"
-            return
-        endif
         let l:files=substitute(l:file_list,"\n"," ","g")
     else
         let l:files=expand("%")
