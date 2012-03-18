@@ -4,7 +4,6 @@
 [core]
     excludesfile = ~/.gitignore
 [alias]
-    review = !sh `git rev-parse --show-toplevel`/tools/rfc.sh
     st = status
     cm = commit -m
     cam = commit -a -m
