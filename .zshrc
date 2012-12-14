@@ -54,3 +54,6 @@ precmd () {
         echo -ne "\ekzsh\e\\"
     fi    
 }
+
+export EDITOR=vim
+set -o vi
