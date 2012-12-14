@@ -29,3 +29,4 @@ au InsertLeave * let &l:fdm = b:oldfdm
 colorscheme torte
 set termencoding=utf-8
 set encoding=utf-8
+set foldlevel=1
