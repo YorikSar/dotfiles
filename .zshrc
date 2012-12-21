@@ -32,16 +32,6 @@ export PAGER=less
 autoload -U select-word-style
 zstyle ":zle:backward-kill-word" word-style bash
 
-# ccache stuff
-export PATH=/usr/local/libexec/ccache:$PATH
-export CCACHE_PATH=/usr/bin:/usr/local/bin
-export CCACHE_DIR=/store/upload/.ccache
-export CCACHE_LOGFILE=/var/log/ccache.log
-
-if [[ -x /usr/local/bin/ccache ]]; then
-	/usr/local/bin/ccache -M 4G > /dev/null
-fi
-
 setopt extended_glob
 preexec () {
     if [[ "$TERM" == "screen" ]]; then
@@ -57,3 +47,7 @@ precmd () {
 
 export EDITOR=vim
 set -o vi
+
+if [ -f ~/.zshrc.local ]; then
+    source ~/.zshrc.local
+fi
