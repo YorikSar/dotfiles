@@ -150,13 +150,16 @@ for_window [ class="^Skype$" ] border none
 assign [ class="^Google-chrome$" title=" - Google Chrome$" ] 3
 for_window [ class="^Google-chrome$" title=" - Google Chrome$" ] border none
 
+assign [ class="^Steam$" ] 5
+for_window [ class="^Steam$" ] border none
+
 exec --no-startup-id setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:scroll'
 exec --no-startup-id /usr/libexec/lxpolkit
 
 # screensaver (with lock)
 exec --no-startup-id xscreensaver -no-splash
 exec --no-startup-id xscreensaver-command -watch | awk '/^UNBLANK|^LOCK/ { system("amixer -c 1 -- set Speaker " ($0 ~ /^UN/ ? "un" : "") "mute") }'
-bindsym Mod4+control+L exec xscreensaver-command -activate
+bindsym Mod4+control+L exec xscreensaver-command -lock
 
 # volume control
 bindsym XF86AudioRaiseVolume exec killall osd_cat; exec osd_cat -P $(amixer -c 1 -- set Speaker 2%+|grep "Front Left:"|cut -d "[" -f2|cut -d "%" -f1) -d 1 -p bottom -A center -b percentage -c green -T Volume
