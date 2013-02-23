@@ -4,12 +4,6 @@ if has('gui')
 endif
 call pathogen#infect()
 filetype plugin indent on
-autocmd VimEnter * call add(NERDTreeIgnore, '\.pyc$')
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd l 
-"autocmd BufEnter * NERDTreeMirror
-
-noremap <F2> :NERDTreeToggle<CR>
 autocmd BufEnter * set colorcolumn=80
 syntax on
 set smartindent
