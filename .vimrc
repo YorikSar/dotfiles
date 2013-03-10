@@ -24,3 +24,20 @@ colorscheme torte
 set termencoding=utf-8
 set encoding=utf-8
 set foldlevel=1
+
+if has("cscope")
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
+    set csto=0
+    set cscopetag
+    set nocscopeverbose
+    if filereadable("cscope.out")
+        cscope add cscope.out
+    endif
+    set cscopeverbose
+    for key in ["s","g","c","t","e","d"]
+        let cmd="cs find ".key." <C-R>=expand(\"<cword>\")<CR><CR>"
+        exec "nmap <C-_>".key." :".cmd
+        exec "nmap <C-Space>".key." :s".cmd
+        exec "nmap <C-Space><C-Space>".key." :vert s".cmd
+    endfor
+endif
