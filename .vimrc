@@ -2,13 +2,21 @@ if has('gui')
     set guioptions-=m
     set guioptions-=T
 endif
-call pathogen#infect()
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-fugitive'
+Bundle 'nvie/vim-flake8'
+Bundle 'tmhedberg/SimpylFold'
+Bundle 'kien/ctrlp.vim'
+
 filetype plugin indent on
 autocmd BufEnter * set colorcolumn=80
 syntax on
 set smartindent
 set nowrap
-set nocompatible
 set expandtab
 set tabstop=4
 set shiftwidth=4
