@@ -26,7 +26,7 @@ setopt appendhistory
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-alias ll="ls -lAGh"
+alias ll="ls -lAh"
 export PAGER=less
 
 autoload -U select-word-style
