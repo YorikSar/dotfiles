@@ -4,7 +4,7 @@ if has('gui')
 endif
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/dotfiles/solarized/vim-colors-solarized,~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
@@ -28,10 +28,12 @@ if !&diff
 endif
 au InsertEnter * let b:oldfdm = &l:fdm | setlocal fdm=manual
 au InsertLeave * let &l:fdm = b:oldfdm
-colorscheme torte
+set t_Co=16
+colorscheme solarized
 set termencoding=utf-8
 set encoding=utf-8
 set foldlevel=1
+set wildignore+=**/*.pyc
 
 if has("cscope")
     set cscopequickfix=s-,c-,d-,i-,t-,e-
