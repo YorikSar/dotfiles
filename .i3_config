@@ -18,7 +18,9 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec [ "$(tmux list-sessions)" ] && exec lxterminal -e "tmux attach" || exec lxterminal -e tmux
+exec --no-startup-id xrdb ~/.Xresources
+exec --no-startup-id urxvtd -f -o
+bindsym $mod+Return exec [ "$(tmux list-sessions)" ] && exec urxvtc -e sh -c "exec tmux attach" || exec urxvtc -e tmux
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -141,8 +143,8 @@ bar {
     modifier $mod
 }
 
-assign [ class="^Lxterminal$" ] 1
-for_window [ class="^Lxterminal$" ] border none
+assign [ class="^URxvt$" ] 1
+for_window [ class="^URxvt$" ] border none
 
 assign [ class="^Skype$" ] 2
 for_window [ class="^Skype$" ] border none
