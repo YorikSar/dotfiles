@@ -7,21 +7,18 @@ function CheckHack(all)
         update
     endif
     let &grepformat="%f:%l:%c: %m\,%f:%l: %m"
-    let &grepprg=getcwd().'/tools/hacking.py'
+    let &grepprg='tox -e pep8'
     if a:all
-        let l:file_list=expand("bin/*")."\n"
-        let l:file_list.=expand("nova/**/*.py")."\n"
-        let l:file_list.=expand("tools/**/*.py")
-        let l:file_list=substitute(l:file_list, "[^\n]*/migrate_repo/[^\n]*\n", "", "g")
-        let l:files=substitute(l:file_list,"\n"," ","g")
+        let l:files=''
     else
-        let l:files=expand("%")
+        let l:files='-- '.expand("%")
     endif
-    exec 'silent! grep! --repeat '.l:files
+    exec 'silent! grep! '.l:files
     let &grepformat=l:old_gfm
     let &grepprg=l:old_gp
-    let has_results=getqflist() != []
-    if has_results
+    let results=getqflist()
+    let fail=(results != []) && (results[-1]['text'] !~ ':)$')
+    if fail
         execute 'belowright copen'
         setlocal wrap
         nnoremap <buffer> <silent> c :cclose<CR>
@@ -29,10 +26,10 @@ function CheckHack(all)
     endif
     set nolazyredraw
     redraw!
-    if has_results == 0
+    if fail == 0
         hi Green ctermfg=green
         echohl Green
-        echon "OK"
+        echon "tox -e pep8: OK"
         echohl
     endif
 endfunction
