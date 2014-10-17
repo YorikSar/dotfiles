@@ -4,18 +4,37 @@ if has('gui')
 endif
 set nocompatible
 filetype off
-set rtp+=~/dotfiles/solarized/vim-colors-solarized,~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'nvie/vim-flake8'
-Bundle 'tmhedberg/SimpylFold'
-Bundle 'kien/ctrlp.vim'
 
+function s:ensure_vundle()
+    let l:vundle_path = expand("~/.vim/bundle/Vundle.vim")
+    if !filereadable(l:vundle_path . "/README.md")
+        call mkdir(l:vundle_path, "p")
+        let l:clone_uri = "https://github.com/gmarik/Vundle.vim.git"
+        execute 'silent !git clone' l:clone_uri l:vundle_path
+        if v:shell_error != 0
+            echoerr "Failed to clone Vundle.vim :("
+            return 0
+        endif
+        autocmd VimEnter * PluginUpdate
+    endif
+    execute 'set rtp+=' . l:vundle_path
+    call vundle#rc()
+    Plugin 'gmarik/Vundle.vim'
+    return 1
+endfunction
+
+if s:ensure_vundle()
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'nvie/vim-flake8'
+    Plugin 'tmhedberg/SimpylFold'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'ludovicchabant/vim-lawrencium'
+endif
+
+set rtp+=~/dotfiles/solarized/vim-colors-solarized
 filetype plugin indent on
 autocmd BufEnter * set colorcolumn=80
 syntax on
-set smartindent
 set nowrap
 set expandtab
 set tabstop=4
