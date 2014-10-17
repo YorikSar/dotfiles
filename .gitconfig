@@ -13,9 +13,14 @@
     lg = log -p
     who = shortlog -s --
     pick = cherry-pick
+    log-all = log --all --graph --decorate --oneline
 [color]
     diff = auto
     status = auto
     branch = auto
 [log]
     decorate = true
+[push]
+	default = simple
+[pull]
+	rebase = true
