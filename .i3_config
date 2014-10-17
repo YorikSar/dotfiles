@@ -26,7 +26,7 @@ bindsym $mod+Return exec [ "$(tmux list-sessions)" ] && exec urxvtc -e sh -c "ex
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec env "PATH=$HOME/.local/bin:$PATH" dmenu_run
 bindsym $mod+shift+d exec i3-dmenu-desktop
 
 # change focus
