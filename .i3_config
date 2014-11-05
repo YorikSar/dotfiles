@@ -144,12 +144,50 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+### THEME
+# Solarized theme
+set $base03  #002b36
+set $base02  #073642
+set $base01  #586e75
+set $base00  #657b83
+set $base_0  #839496
+set $base_1  #93a1a1
+set $base_2  #eee8d5
+set $base_3  #fdf6e3
+set $yellow  #b58900
+set $orange  #cb4b16
+set $red     #dc322f
+set $magenta #d33682
+set $violet  #6c71c4
+set $blue    #268bd2
+set $cyan    #2aa198
+set $green   #859900
+set $custom  #1c5766
+
+# Client colors
+# colorclass            <border> <bg>     <text>   <indicator>
+client.focused          $base02  $base02  $base_1  $green
+client.focused_inactive $base03  $base03  $base_1  $violet
+client.unfocused        $base03  $base03  $base_0  $base01
+client.urgent           $base_3  $base_3  $base00  $red
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
     mode hide
     status_command i3status
     modifier $mod
+    colors {
+        separator  $base_0
+        background $base03
+        statusline $base_0
+
+        # colorclass        <border> <bg>     <text>
+        focused_workspace   $base02  $base02  $base_1
+        active_workspace    $base03  $base03  $base_1
+        inactive_workspace  $base03  $base03  $base_0
+        urgent_workspace    $base_3  $base_3  $base00
+    }
 }
 
 assign [ class="^URxvt$" ] 1
