@@ -26,7 +26,14 @@ setopt appendhistory
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-alias ll="ls -lAh"
+case "$(uname -s)" in
+    Linux)
+        alias ll="ls -lah --color=auto"
+        ;;
+    FreeBSD)
+        alias ll="ls -lAGh"
+        ;;
+esac
 export PAGER=less
 
 autoload -U select-word-style
