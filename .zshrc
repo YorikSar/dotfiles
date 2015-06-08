@@ -36,6 +36,8 @@ case "$(uname -s)" in
         ;;
 esac
 
+IPROMPT="%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k"
+CPROMPT="%B%F{green}%n@%m%k %B%F{blue}%1~ %S%#%s %b%f%k"
 
 preexec () {
     if [[ "$TERM" == "screen" ]]; then
@@ -43,15 +45,23 @@ preexec () {
         echo -ne "\ek$CMD\e\\"
     fi
 }
+
 precmd () {
     if [[ "$TERM" == "screen" ]]; then
         echo -ne "\ekzsh\e\\"
     fi    
+    PROMPT="$IPROMPT"
 }
 
-
-PS1="%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k"
-
+zle-keymap-select() {
+    if [ "$KEYMAP" = "vicmd" ]; then
+      PROMPT="$CPROMPT"
+    else
+      PROMPT="$IPROMPT"
+    fi
+    zle reset-prompt
+}
+zle -N zle-keymap-select
 
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
