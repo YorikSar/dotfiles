@@ -168,7 +168,7 @@ set $custom  #1c5766
 # colorclass            <border> <bg>     <text>   <indicator>
 client.focused          $base02  $base02  $base_1  $green
 client.focused_inactive $base03  $base03  $base_1  $violet
-client.unfocused        $base03  $base03  $base_0  $base01
+client.unfocused        $base02  $base03  $base_0  $base01
 client.urgent           $base_3  $base_3  $base00  $red
 
 # Start i3bar to display a workspace bar (plus the system information i3status
