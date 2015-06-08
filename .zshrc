@@ -57,6 +57,8 @@ set -o vi
 
 PS1="%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k"
 
+PATH="$HOME/.local/bin:$PATH"
+
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
