@@ -1,5 +1,3 @@
-# The following lines were added by compinstall
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _ignored _approximate _prefix
 zstyle ':completion:*' expand prefix suffix
@@ -14,17 +12,20 @@ zstyle ':completion:*' original false
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' verbose true
 zstyle :compinstall filename '/home/yorik/.zshrc'
-
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
+autoload -U select-word-style
+zstyle ":zle:backward-kill-word" word-style bash
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory
-bindkey -e
-# End of lines configured by zsh-newuser-install
+setopt extended_glob
+bindkey -v
+export EDITOR=vim
+export PAGER=less
+export PATH="$HOME/.local/bin:$PATH"
 
 case "$(uname -s)" in
     Linux)
@@ -34,12 +35,8 @@ case "$(uname -s)" in
         alias ll="ls -lAGh"
         ;;
 esac
-export PAGER=less
 
-autoload -U select-word-style
-zstyle ":zle:backward-kill-word" word-style bash
 
-setopt extended_glob
 preexec () {
     if [[ "$TERM" == "screen" ]]; then
         local CMD=${1[(wr)^(*=*|sudo|-*)]}
@@ -52,12 +49,9 @@ precmd () {
     fi    
 }
 
-export EDITOR=vim
-set -o vi
 
 PS1="%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k"
 
-PATH="$HOME/.local/bin:$PATH"
 
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
