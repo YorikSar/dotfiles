@@ -29,6 +29,8 @@ if s:ensure_vundle()
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'kien/ctrlp.vim'
     Plugin 'ludovicchabant/vim-lawrencium'
+    Plugin 'davidhalter/jedi-vim'
+    let g:jedi#popup_select_first = 0
 endif
 
 set rtp+=~/dotfiles/solarized/vim-colors-solarized
