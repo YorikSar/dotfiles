@@ -44,6 +44,7 @@ set shiftwidth=4
 set incsearch
 set hlsearch
 if !&diff
+    set viewoptions=cursor
     autocmd BufWinLeave *.* mkview
     autocmd BufWinEnter *.* silent loadview
 endif
