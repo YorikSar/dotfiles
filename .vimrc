@@ -34,6 +34,7 @@ if s:ensure_vundle()
 endif
 
 set rtp+=~/dotfiles/solarized/vim-colors-solarized
+set bg=dark
 filetype plugin indent on
 autocmd BufEnter * set colorcolumn=80
 syntax on
