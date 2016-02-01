@@ -24,3 +24,5 @@
 	default = simple
 [pull]
 	rebase = true
+[gitreview]
+	rebase = false
