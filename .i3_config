@@ -223,8 +223,8 @@ exec --no-startup-id xscreensaver-command -watch | awk '/^UNBLANK|^LOCK/ { syste
 bindsym Mod4+control+L exec xscreensaver-command -lock
 
 # volume control
-bindsym XF86AudioRaiseVolume exec killall osd_cat; exec osd_cat -P $(amixer -M -c 2 -- set Headphone 2%+|grep "Front Left:"|cut -d "[" -f2|cut -d "%" -f1) -d 1 -p bottom -A center -b percentage -c green -T Volume
-bindsym XF86AudioLowerVolume exec killall osd_cat; exec osd_cat -P $(amixer -M -c 2 -- set Headphone 2%-|grep "Front Left:"|cut -d "[" -f2|cut -d "%" -f1) -d 1 -p bottom -A center -b percentage -c green -T Volume
+bindsym XF86AudioRaiseVolume exec killall osd_cat; exec osd_cat -P $(amixer -M -c 0 -- set Headphone 2%+|grep "Front Left:"|cut -d "[" -f2|cut -d "%" -f1) -d 1 -p bottom -A center -b percentage -c green -T Volume
+bindsym XF86AudioLowerVolume exec killall osd_cat; exec osd_cat -P $(amixer -M -c 0 -- set Headphone 2%-|grep "Front Left:"|cut -d "[" -f2|cut -d "%" -f1) -d 1 -p bottom -A center -b percentage -c green -T Volume
 
 # screenshot
 bindsym Print exec "import -window root ~/desktop_screenshot$(date +%F,%T).png"
