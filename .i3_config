@@ -227,8 +227,9 @@ bindsym XF86AudioRaiseVolume exec killall osd_cat; exec osd_cat -P $(amixer -M -
 bindsym XF86AudioLowerVolume exec killall osd_cat; exec osd_cat -P $(amixer -M -c 0 -- set Headphone 2%-|grep "Front Left:"|cut -d "[" -f2|cut -d "%" -f1) -d 1 -p bottom -A center -b percentage -c green -T Volume
 
 # screenshot
-bindsym Print exec "import -window root ~/desktop_screenshot$(date +%F,%T).png"
-bindsym Mod4+Print exec "import -frame -window $(xprop _NET_ACTIVE_WINDOW -root | awk '{print $5}') ~/active_window_screenshot$(date +%F,%T).png"
+bindsym Print exec "maim --format png /dev/stdout | xclip -selection clipboard -t image/png"
+bindsym Mod4+Print exec sleep 0.5 && maim -i $(xprop _NET_ACTIVE_WINDOW -root | awk '{print $5}') --format png /dev/stdout | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec "maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png"
 
 # Keyboard controlled turn monitor off
 bindsym Pause exec xset dpms force off
