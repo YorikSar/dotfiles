@@ -19,8 +19,7 @@ floating_modifier $mod
 
 # start a terminal
 exec --no-startup-id xrdb ~/.Xresources
-exec --no-startup-id urxvtd -f -o
-bindsym $mod+Return exec [ "$(tmux list-sessions)" ] && exec urxvtc -e sh -c "exec tmux attach" || exec urxvtc -e tmux
+bindsym $mod+Return exec [ "$(tmux list-sessions)" ] && exec st -t st -e sh -c "exec tmux attach" || exec st -t st -e tmux
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -190,8 +189,8 @@ bar {
     }
 }
 
-assign [ class="^URxvt$" ] 1
-for_window [ class="^URxvt$" ] border none
+assign [ class="^st-256color$" ] 1
+for_window [ class="^st-256color$" ] border none
 
 assign [ class="^Skype$" ] 2
 for_window [ class="^Skype$" ] border none
