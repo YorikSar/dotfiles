@@ -198,11 +198,21 @@ for_window [ class="^Skype$" ] border none
 assign [ class="^Google-chrome-stable$" title=" - Google Chrome$" ] 3
 for_window [ class="^Google-chrome-stable$" title=" - Google Chrome$" ] border none
 
+# Hangouts
 assign [ class="^Google-chrome-stable$" instance="^crx_nckgahadagoaajjgafhacjanaoiihapd$" ] 2
 for_window [ class="^Google-chrome-stable$" instance="^crx_nckgahadagoaajjgafhacjanaoiihapd$" ] border none
 
+# Telegram
+assign [ class="^Google-chrome-stable$" instance="^crx_clhhggbfdinjmjhajaheehoeibfljjno$" ] 2
+for_window [ class="^Google-chrome-stable$" instance="^crx_clhhggbfdinjmjhajaheehoeibfljjno$" ] border none
+
 assign [ class="^Steam$" ] 5
 for_window [ class="^Steam$" ] border none
+
+# iKVM - IPMI remote console
+assign [ title="iKVM" ] 5
+for_window [ title="iKVM" ] border none
+for_window [ title="iKVM" ] floating disable
 
 exec --no-startup-id setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 exec --no-startup-id /usr/libexec/lxpolkit
