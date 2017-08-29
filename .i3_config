@@ -12,7 +12,7 @@
 set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
