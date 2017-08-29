@@ -13,7 +13,7 @@
     lg = log -p
     who = shortlog -s --
     pick = cherry-pick
-    log-all = log --all --graph --pretty=tformat:'%C(auto)%h%d %s [%an]'
+    log-all = log --all --graph --pretty=tformat:'%C(auto)%h%d %s [%an,%cr]'
 [color]
     diff = auto
     status = auto
