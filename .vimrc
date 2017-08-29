@@ -30,6 +30,7 @@ if s:ensure_vundle()
     Plugin 'kien/ctrlp.vim'
     Plugin 'ludovicchabant/vim-lawrencium'
     Plugin 'davidhalter/jedi-vim'
+    Plugin 'saltstack/salt-vim'
     let g:jedi#popup_select_first = 0
 endif
 
