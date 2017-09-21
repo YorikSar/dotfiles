@@ -217,10 +217,8 @@ for_window [ title="iKVM" ] floating disable
 exec --no-startup-id setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 exec --no-startup-id /usr/libexec/lxpolkit
 
-# screensaver (with lock)
-exec --no-startup-id xscreensaver -no-splash
-exec --no-startup-id xscreensaver-command -watch | awk '/^UNBLANK|^LOCK/ { system("amixer -c 2 -- set Headphone " ($0 ~ /^UN/ ? "un" : "") "mute") }'
-bindsym Mod4+control+L exec xscreensaver-command -lock
+# lock
+bindsym Mod4+Control+L exec sleep 1 && slock
 
 # volume control
 bindsym XF86AudioRaiseVolume exec killall osd_cat; exec osd_cat -P $(amixer -M -c 0 -- set Headphone 2%+|grep "Front Left:"|cut -d "[" -f2|cut -d "%" -f1) -d 1 -p bottom -A center -b percentage -c green -T Volume
