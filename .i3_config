@@ -19,7 +19,7 @@ floating_modifier $mod
 
 # start a terminal
 exec --no-startup-id xrdb ~/.Xresources
-bindsym $mod+Return exec [ "$(tmux list-sessions)" ] && exec st -t st -e sh -c "exec tmux attach" || exec st -t st -e tmux
+bindsym $mod+Return exec [ "$(tmux list-sessions)" ] && exec st -f 'Hack:size=10:dpi=160' -t st -e sh -c "exec tmux attach" || exec st -f 'Hack:size=10:dpi=160' -t st -e tmux
 
 # kill focused window
 bindsym $mod+Shift+Q kill
