@@ -229,6 +229,9 @@ bindsym XF86AudioLowerVolume exec killall osd_cat; exec osd_cat -P $(amixer -M -
 bindsym Print exec "maim --format png /dev/stdout | xclip -selection clipboard -t image/png"
 bindsym Mod4+Print exec sleep 0.5 && maim -i $(xprop _NET_ACTIVE_WINDOW -root | awk '{print $5}') --format png /dev/stdout | xclip -selection clipboard -t image/png
 bindsym Shift+Print exec "maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png"
+bindsym XF86LaunchB exec "maim --format png /dev/stdout | xclip -selection clipboard -t image/png"
+bindsym Mod4+XF86LaunchB exec sleep 0.5 && maim -i $(xprop _NET_ACTIVE_WINDOW -root | awk '{print $5}') --format png /dev/stdout | xclip -selection clipboard -t image/png
+bindsym Shift+XF86LaunchB exec "maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png"
 
 # Keyboard controlled turn monitor off
 bindsym Pause exec xset dpms force off
