@@ -29,3 +29,5 @@
 [status]
     short = true
     branch = true
+[http]
+    cookiefile = /home/yorik/.gitcookies
