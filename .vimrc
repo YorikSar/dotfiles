@@ -1,8 +1,8 @@
+set nocompatible
 if has('gui')
     set guioptions-=m
     set guioptions-=T
 endif
-set nocompatible
 filetype off
 
 function s:ensure_vundle()
@@ -31,6 +31,7 @@ if s:ensure_vundle()
     Plugin 'ludovicchabant/vim-lawrencium'
     Plugin 'saltstack/salt-vim'
     Plugin 'lifepillar/vim-solarized8'
+    Plugin 'ElmCast/elm-vim'
 endif
 
 set bg=dark
@@ -41,6 +42,7 @@ set nowrap
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set scrolloff=2
 set incsearch
 set hlsearch
 if !&diff
