@@ -36,6 +36,7 @@ case "$(uname -s)" in
         ;;
 esac
 
+setopt prompt_sp
 IPROMPT="%B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k"
 CPROMPT="%B%F{green}%n@%m%k %B%F{blue}%1~ %S%#%s %b%f%k"
 
