@@ -31,8 +31,12 @@ if s:ensure_vundle()
     Plugin 'ludovicchabant/vim-lawrencium'
     Plugin 'saltstack/salt-vim'
     Plugin 'lifepillar/vim-solarized8'
+    Plugin 'fatih/vim-go'
     Plugin 'ElmCast/elm-vim'
 endif
+
+let g:go_debug = ['shell-commands']
+let g:go_def_mode = 'godef'
 
 set bg=dark
 filetype plugin indent on
