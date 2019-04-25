@@ -30,9 +30,9 @@ if s:ensure_vundle()
     Plugin 'kien/ctrlp.vim'
     Plugin 'ludovicchabant/vim-lawrencium'
     Plugin 'saltstack/salt-vim'
+    Plugin 'lifepillar/vim-solarized8'
 endif
 
-set rtp+=~/dotfiles/solarized/vim-colors-solarized
 set bg=dark
 filetype plugin indent on
 autocmd BufEnter * set colorcolumn=80
@@ -50,8 +50,14 @@ if !&diff
 endif
 au InsertEnter * let b:oldfdm = &l:fdm | setlocal fdm=manual
 au InsertLeave * let &l:fdm = b:oldfdm
-set t_Co=16
-colorscheme solarized
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"set t_8f = "[38;2;%lu;%lu;%lum"
+"set t_8b = "[48;2;%lu;%lu;%lum"
+"set t_Co=256
+"let g:solarized_use16 = 1
+colorscheme solarized8
 set termencoding=utf-8
 set encoding=utf-8
 set foldlevel=1
