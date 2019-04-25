@@ -215,6 +215,7 @@ for_window [ title="iKVM" ] border none
 for_window [ title="iKVM" ] floating disable
 
 exec --no-startup-id setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
+exec --no-startup-id hsetroot
 exec --no-startup-id /usr/libexec/lxpolkit
 
 # lock
@@ -241,4 +242,3 @@ exec --no-startup-id /home/yorik/tmp/irssi-libnotify/notify-listener.py
 # scratchpad
 bindsym $mod+Shift+z move scratchpad
 bindsym $mod+z scratchpad show
-
