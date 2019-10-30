@@ -217,6 +217,7 @@ for_window [ title="iKVM" ] floating disable
 exec --no-startup-id setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 exec --no-startup-id hsetroot
 exec --no-startup-id /usr/libexec/lxpolkit
+exec --no-startup-id hsetroot
 
 # lock
 bindsym Mod4+Control+L exec sleep 1 && slock
