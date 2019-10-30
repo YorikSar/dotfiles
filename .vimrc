@@ -33,6 +33,7 @@ if s:ensure_vundle()
     Plugin 'lifepillar/vim-solarized8'
     Plugin 'fatih/vim-go'
     Plugin 'ElmCast/elm-vim'
+    Plugin 'tpope/vim-dispatch'
 endif
 
 set bg=dark
