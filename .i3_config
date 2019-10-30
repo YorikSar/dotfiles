@@ -214,6 +214,11 @@ assign [ title="iKVM" ] 5
 for_window [ title="iKVM" ] border none
 for_window [ title="iKVM" ] floating disable
 
+# pavucontrol
+for_window [ class="^Pavucontrol$" ] floating enable
+for_window [ class="^Pavucontrol$" ] resize set 800 500
+for_window [ class="^Pavucontrol$" ] move position 1600 100
+
 exec --no-startup-id setxkbmap -layout 'us,ru' -option 'grp:caps_toggle,grp_led:caps'
 exec --no-startup-id hsetroot
 exec --no-startup-id /usr/libexec/lxpolkit
