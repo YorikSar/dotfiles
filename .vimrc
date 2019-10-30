@@ -35,9 +35,6 @@ if s:ensure_vundle()
     Plugin 'ElmCast/elm-vim'
 endif
 
-let g:go_debug = ['shell-commands']
-let g:go_def_mode = 'godef'
-
 set bg=dark
 filetype plugin indent on
 autocmd BufEnter * set colorcolumn=80
@@ -85,3 +82,6 @@ if has("cscope")
         exec "nmap <C-Space><C-Space>".key." :vert s".cmd
     endfor
 endif
+
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
