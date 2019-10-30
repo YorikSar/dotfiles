@@ -33,6 +33,7 @@ if s:ensure_vundle()
     Plugin 'lifepillar/vim-solarized8'
     Plugin 'fatih/vim-go'
     Plugin 'ElmCast/elm-vim'
+    Plugin 'LnL7/vim-nix'
     Plugin 'tpope/vim-dispatch'
 endif
 
@@ -45,8 +46,11 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set scrolloff=2
+set sidescroll=5
+set sidescrolloff=2
 set incsearch
 set hlsearch
+set wildmenu
 if !&diff
     set viewoptions=cursor
     autocmd BufWinLeave *.* mkview
