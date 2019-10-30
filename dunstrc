@@ -1,0 +1,10 @@
+[global]
+    geometry = "0x0-50-50"
+    transparency = 50
+[experimental]
+    per_monitor_dpi = true
+[shortcuts]
+    close = mod4+n
+    close_all = mod4+shift+n
+    history = mod4+ctrl+n
+    context = mod4+mod1+n
