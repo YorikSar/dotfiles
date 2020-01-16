@@ -19,6 +19,7 @@
       "htmlcov"
     ];
     extraConfig = {
+      core.sshCommand = "/usr/bin/ssh";  # OpenSSH in nix doesn't support UseKeychain
       color = {
         diff = "auto";
         status = "auto";
