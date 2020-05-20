@@ -13,6 +13,9 @@ let
 
 in
 {
+  imports = [
+    ./languageclient.nix
+  ];
   programs.neovim = {
     enable = true;
     viAlias = true;

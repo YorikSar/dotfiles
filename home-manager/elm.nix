@@ -3,17 +3,11 @@
 {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
-      LanguageClient-neovim
       vim-elm-syntax
     ];
     extraConfig = ''
-      let g:LanguageClient_serverCommands = {
-        \ 'elm': ['elm-language-server'],
-        \ }
-      
-      let g:LanguageClient_rootMarkers = {
-        \ 'elm': ['elm.json'],
-        \ }
+      let g:LanguageClient_serverCommands['elm'] = ['elm-language-server']
+      let g:LanguageClient_rootMarkers['elm'] = ['elm.json']
     '';
   };
   home.packages = with pkgs.elmPackages; [
