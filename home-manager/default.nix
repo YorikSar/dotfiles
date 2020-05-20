@@ -11,6 +11,7 @@
     ./zsh.nix
     ./ssh.nix
     ./openstack
+    ./elm.nix
   ];
   home.packages = with pkgs; [
     gnumake
