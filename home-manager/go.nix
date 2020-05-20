@@ -6,12 +6,13 @@
     goPath = "go";
   };
   programs.neovim = {
-    plugins = with pkgs.vimPlugins; [
-      vim-go
-    ];
+    extraConfig = ''
+      let g:LanguageClient_serverCommands['go'] = ['gopls']
+    '';
   };
   home.packages = with pkgs; [
     gotools
+    gopls
     dep
   ];
 }
