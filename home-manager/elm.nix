@@ -16,5 +16,6 @@
     elm-test
     elm-upgrade
     elm-language-server
+    pkgs.nodePackages."uglify-js"
   ];
 }
