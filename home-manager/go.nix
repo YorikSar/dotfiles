@@ -14,5 +14,6 @@
     gotools
     gopls
     dep
+    golangci-lint
   ];
 }

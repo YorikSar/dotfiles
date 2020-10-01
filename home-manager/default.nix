@@ -16,5 +16,12 @@
   ];
   home.packages = with pkgs; [
     gnumake
+    watch
+
+    jq
+    nodejs
+
+    kubectl
+    kubernetes-helm
   ];
 }
