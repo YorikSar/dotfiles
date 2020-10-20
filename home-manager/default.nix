@@ -13,6 +13,7 @@
     ./openstack
     ./elm.nix
     ./private
+    ./nix-upgrade.nix
   ];
   home.packages = with pkgs; [
     gnumake
