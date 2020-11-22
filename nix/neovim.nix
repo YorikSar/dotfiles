@@ -26,7 +26,6 @@ in
       vim-nix
       vim-dispatch
       vim-fugitive
-      vim-go
     ];
   };
 }
