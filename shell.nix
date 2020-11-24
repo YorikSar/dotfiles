@@ -1,15 +1,10 @@
-let
-  sources = import ./nix/sources.nix;
-in
 { 
-  pkgs ? import sources.nixpkgs {}
+  pkgs ? import ./nix/pkgs
 }:
-let
-  home-manager = import sources.home-manager { inherit pkgs; };
-in
-pkgs.mkShell {
+with pkgs;
+mkShell {
   buildInputs = [
-    pkgs.niv
-    home-manager.home-manager
+    niv
+    home-manager
   ];
 }
