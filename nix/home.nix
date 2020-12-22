@@ -14,6 +14,7 @@
     ./elm.nix
     ./private
     ./nix-upgrade.nix
+    ./nix.nix
   ];
   home.packages = with pkgs; [
     gnumake
