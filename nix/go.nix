@@ -18,5 +18,6 @@
     gopls
     dep
     golangci-lint
+    clang  # looks like gopls needs this
   ];
 }
