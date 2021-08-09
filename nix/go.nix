@@ -9,9 +9,6 @@
     extraConfig = ''
       let g:LanguageClient_serverCommands['go'] = ['gopls']
     '';
-    plugins = with pkgs.vimPlugins; [
-      vim-go
-    ];
   };
   home.packages = with pkgs; [
     gotools
