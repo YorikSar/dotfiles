@@ -49,6 +49,7 @@
       PATH = "$HOME/.local/bin:$PATH";
       NIX_PATH = "$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
       TERMINFO = "${pkgs.ncurses5}/share/terminfo";
+      LANG = "en_US.UTF-8";
     };
   };
 }
