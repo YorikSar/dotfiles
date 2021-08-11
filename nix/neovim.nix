@@ -15,6 +15,7 @@ in
 {
   imports = [
     ./languageclient.nix
+    ./vim-fugitive.nix
   ];
   programs.neovim = {
     enable = true;
@@ -25,7 +26,6 @@ in
       vim-solarized8
       vim-nix
       vim-dispatch
-      vim-fugitive
     ];
   };
 }
