@@ -12,6 +12,8 @@ main() {
     echo "Restarting Nix daemon..."
     sudo launchctl remove org.nixos.nix-daemon
     sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
+    echo "Waiting for Nix daemon to start..."
+    while ! nix ping-store; do sleep 1; done
     if [ "$USER" != "root" ]; then
         echo "Updating user channels..."
         nix-channel --update
