@@ -3,15 +3,14 @@
 {
   programs.htop = {
     enable = true;
-    hideThreads = true;
-    meters = {
-      left = [
+    settings = {
+      hide_threads = true;
+      left_meters = [
         "LeftCPUs"
         "Memory"
         "Swap"
-        #{ kind = "Battery"; mode = 1; }
       ];
-      right = [
+      right_meters = [
         "RightCPUs"
         "Tasks"
         "LoadAverage"
