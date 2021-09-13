@@ -6,6 +6,7 @@
     ../mpv.nix
     ../elm.nix
     ../private/home.nix
+    ../beancount.nix
   ];
 }
 
