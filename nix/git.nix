@@ -34,8 +34,9 @@
         branch = "true";
       };
       http.cookiefile = "/home/yorik/.gitcookies";
-      url."ssh://ytaraday@gerrit.mcp.mirantis.com:29418/".insteadOf = "https://gerrit.mcp.mirantis.com/a/";
       core.fsmonitor = "${config.programs.git.package}/share/git-core/templates/hooks/fsmonitor-watchman.sample";
+      core.untrackedCache = "true";
+      tag.sort = "-version:refname";
     };
   };
   home.packages = with pkgs; [
