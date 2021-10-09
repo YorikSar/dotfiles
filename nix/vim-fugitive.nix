@@ -4,6 +4,7 @@
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       vim-fugitive
+      vim-rhubarb
     ];
     extraConfig = ''
       " Use Dispatch for Gpush and Gfetch
