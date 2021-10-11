@@ -47,7 +47,7 @@
       EDITOR = "vim";
       PAGER = "less";
       PATH = "$HOME/.local/bin:$PATH";
-      NIX_PATH = "$HOME/.nix-defexpr/channels\${NIX_PATH:+:}$NIX_PATH";
+      NIX_PATH = "$HOME/.nix-defexpr/channels:$HOME/.nix-defexpr/channels_root\${NIX_PATH:+:}$NIX_PATH";
       TERMINFO = "${pkgs.ncurses5}/share/terminfo";
       LANG = "en_US.UTF-8";
     };
