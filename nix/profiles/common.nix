@@ -15,6 +15,7 @@
   home.packages = with pkgs; [
     gnumake
     watch
+    docker
 
     jq
     nodejs
