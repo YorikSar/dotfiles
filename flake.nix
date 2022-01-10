@@ -20,6 +20,7 @@
       homeConfigurations = lib.hmConfigurations {
         yorik = ./nix/profiles/home.nix;
         ytaraday = ./nix/profiles/work.nix;
+        tweag = ./nix/profiles/tweag.nix;
       };
     };
 }
