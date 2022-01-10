@@ -5,7 +5,7 @@
     ./common.nix
     # openstack is not compatible with latest nixpkgs
     #../openstack
-    ../private/work.nix
+    ../private/mirantis.nix
   ];
   home.packages = with pkgs; [
     awscli
