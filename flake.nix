@@ -14,7 +14,7 @@
         inherit system;
       };
       lib = import ./nix/lib {
-        inherit system pkgs home-manager;
+        inherit system nixpkgs pkgs home-manager;
       };
     in {
       homeConfigurations = lib.hmConfigurations {

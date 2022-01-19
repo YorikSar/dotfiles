@@ -1,4 +1,4 @@
-{system, pkgs, home-manager}: {
+{system, nixpkgs, pkgs, home-manager}: {
   hmConfigurations =
     let
       buildConfig = name: profile:
@@ -9,6 +9,25 @@
             imports = [
               profile
             ];
+            home.file.".config/nix/registry.json".text = builtins.toJSON {
+              version = 2;
+              flakes = [
+                {
+                  from = {
+                    id = "nixpkgs";
+                    type = "indirect";
+                  };
+                  to = {
+                    lastModified = nixpkgs.lastModified;
+                    narHash = nixpkgs.narHash;
+                    owner = "NixOS";
+                    repo = "nixpkgs";
+                    rev = nixpkgs.rev;
+                    type = "github";
+                  };
+                }
+              ];
+            };
           };
           homeDirectory = "/Users/${name}";
         };
