@@ -11,8 +11,15 @@
     experimental-features = nix-command flakes
   '';
 
+  programs.neovim = {
+    extraConfig = ''
+      let g:LanguageClient_serverCommands['nix'] = ['rnix-lsp']
+    '';
+  };
+
   home.packages = with pkgs; [
     lorri
     nixUnstable
+    rnix-lsp
   ];
 }
