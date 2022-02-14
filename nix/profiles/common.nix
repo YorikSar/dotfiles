@@ -11,6 +11,7 @@
     ../ssh.nix
     ../nix-upgrade.nix
     ../nix.nix
+    ../xcrun-subst.nix
   ];
   programs.home-manager.enable = true;
   home.packages = with pkgs; [
@@ -22,4 +23,3 @@
     nodejs
   ];
 }
-
