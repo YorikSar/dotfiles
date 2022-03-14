@@ -7,7 +7,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {self, nixpkgs, home-manager}:
+  outputs = { self, nixpkgs, home-manager }:
     let
       system = "x86_64-darwin";
       pkgs = import nixpkgs {
@@ -16,8 +16,10 @@
       lib = import ./nix/lib {
         inherit system nixpkgs pkgs home-manager;
       };
-    in {
+    in
+    {
       homeConfigurations = lib.hmConfigurations {
+        base = ./nix/profiles/base.nix;
         yorik = ./nix/profiles/home.nix;
         mira = ./nix/profiles/mirantis.nix;
         tweag = ./nix/profiles/tweag.nix;
