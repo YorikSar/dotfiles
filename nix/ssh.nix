@@ -7,9 +7,6 @@
     controlPath = "~/.ssh/%C.ctl";
     controlPersist = "yes";
     serverAliveInterval = 5;
-    extraOptionOverrides = {
-      UseKeychain = "yes";
-    };
     userKnownHostsFile = "~/.ssh/known_hosts ~/.ssh/hm_known_hosts";
     matchBlocks = {
       "github.com" = {
