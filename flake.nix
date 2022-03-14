@@ -9,20 +9,19 @@
 
   outputs = { self, nixpkgs, home-manager }:
     let
-      system = "x86_64-darwin";
-      pkgs = import nixpkgs {
-        inherit system;
-      };
       lib = import ./nix/lib {
-        inherit system nixpkgs pkgs home-manager;
+        inherit nixpkgs home-manager;
       };
     in
     {
-      homeConfigurations = lib.hmConfigurations {
-        base = ./nix/profiles/base.nix;
-        yorik = ./nix/profiles/home.nix;
-        mira = ./nix/profiles/mirantis.nix;
-        tweag = ./nix/profiles/tweag.nix;
-      };
+      homeConfigurations =
+        (lib.hmConfigurations "x86_64-darwin" {
+          yorik = ./nix/profiles/home.nix;
+          mira = ./nix/profiles/mirantis.nix;
+          tweag = ./nix/profiles/tweag.nix;
+        }) //
+        (lib.hmConfigurations "x86_64-linux" {
+          server = ./nix/profiles/base.nix;
+        });
     };
 }

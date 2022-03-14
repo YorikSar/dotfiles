@@ -1,6 +1,7 @@
-{system, nixpkgs, pkgs, home-manager}: {
-  hmConfigurations =
+{ nixpkgs, home-manager }: {
+  hmConfigurations = system:
     let
+      pkgs = nixpkgs.legacyPackages.${system};
       buildConfig = name: profile:
         home-manager.lib.homeManagerConfiguration {
           inherit system pkgs;
@@ -32,5 +33,5 @@
           homeDirectory = "/Users/${name}";
         };
     in
-      attrs: builtins.mapAttrs buildConfig attrs;
+    attrs: builtins.mapAttrs buildConfig attrs;
 }
