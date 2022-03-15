@@ -35,15 +35,21 @@
     in
     attrs: builtins.mapAttrs buildConfig attrs;
   homeConfigurationsChecks = cfgs:
-    nixpkgs.lib.trivial.pipe cfgs [
-      # cfgs => [{ system = {name = cfgname; value = cfg.activationPackage;}}]
-      (nixpkgs.lib.attrsets.mapAttrsToList (name: cfg: {
-        ${cfg.activationPackage.stdenv.system} = {
-          inherit name;
-          value = cfg.activationPackage;
-        };
+    let
+      lib = nixpkgs.lib;
+    in
+    lib.trivial.pipe cfgs [
+      # drop everything except activationPackage
+      (lib.mapAttrs (name: cfg: cfg.activationPackage))
+      # cfgs => [{ system, name, value = activationPackage;}]
+      (lib.mapAttrsToList (name: pkg: {
+        system = pkg.stdenv.system;
+        inherit name;
+        value = pkg;
       }))
-      # => { system.cfgname = cfg.activationPackage }
-      (nixpkgs.lib.attrsets.zipAttrsWith (name: values: builtins.listToAttrs values))
+      # [{ system, name, value}] => {system = [{ system, name, value}]}
+      (lib.groupBy (systemNameValue: systemNameValue.system))
+      # => { system.name = activationPackage }
+      (lib.mapAttrs (system: nameValuePairs: lib.listToAttrs nameValuePairs))
     ];
 }
