@@ -34,4 +34,16 @@
         };
     in
     attrs: builtins.mapAttrs buildConfig attrs;
+  homeConfigurationsChecks = cfgs:
+    nixpkgs.lib.trivial.pipe cfgs [
+      # cfgs => [{ system = {name = cfgname; value = cfg.activationPackage;}}]
+      (nixpkgs.lib.attrsets.mapAttrsToList (name: cfg: {
+        ${cfg.activationPackage.stdenv.system} = {
+          inherit name;
+          value = cfg.activationPackage;
+        };
+      }))
+      # => { system.cfgname = cfg.activationPackage }
+      (nixpkgs.lib.attrsets.zipAttrsWith (name: values: builtins.listToAttrs values))
+    ];
 }

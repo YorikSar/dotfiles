@@ -29,5 +29,6 @@
         (lib.hmConfigurations "x86_64-linux" {
           server = ./nix/profiles/base.nix;
         });
+      checks = lib.homeConfigurationsChecks self.homeConfigurations;
     };
 }
