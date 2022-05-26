@@ -37,6 +37,7 @@
       core.fsmonitor = "${config.programs.git.package}/share/git-core/templates/hooks/fsmonitor-watchman.sample";
       core.untrackedCache = "true";
       tag.sort = "-version:refname";
+      url."https://github.com/".insteadOf = "git@github.com:";
     };
   };
   home.packages = with pkgs; [
