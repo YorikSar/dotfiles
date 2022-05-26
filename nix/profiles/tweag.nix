@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -7,4 +7,6 @@
     ../private/tweag.nix
     ../bazel.nix
   ];
+
+  programs.git.userEmail = lib.mkOverride 10 "yuriy.taraday@tweag.io";
 }
