@@ -25,7 +25,8 @@ let
     # clock
     set-window-option -g clock-mode-colour green #green
   '';
-in {
+in
+{
   programs.tmux = {
     enable = true;
     escapeTime = 0;
@@ -34,10 +35,24 @@ in {
     terminal = "tmux-256color";
     secureSocket = false;
     extraConfig = solarized + ''
-      set -g status-right " \"#{=21:pane_title}\" %H:%M %a %d-%b-%y"
       set-option -g detach-on-destroy off
 
       set -ga terminal-overrides ",xterm-256color:Tc"
     '';
+    plugins = [
+      {
+        plugin = pkgs.tmuxPlugins.resurrect;
+        extraConfig = ''
+          set -g @resurrect-capture-pane-contents 'on'
+        '';
+      }
+      {
+        plugin = pkgs.tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '15' # minutes
+        '';
+      }
+    ];
   };
 }
