@@ -1,10 +1,12 @@
 { config, pkgs, ... }:
 let
   # From https://github.com/NixOS/nixpkgs/issues/168984#issuecomment-1109119619
-  golangci-lint-117 = pkgs.golangci-lint.override ({
+  golangci-lint-117 = (pkgs.golangci-lint.override ({
     # Override https://github.com/NixOS/nixpkgs/pull/166801 which changed this
     # to buildGo118Module because it does not build on Darwin.
-    buildGoModule = pkgs.buildGoModule;
+    buildGoModule = pkgs.buildGo117Module;
+  })).overrideAttrs (old: {
+    meta = old.meta // { broken = false; };
   });
 in
 

@@ -6,6 +6,7 @@
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
     flake-compat = {
       url = "github:edolstra/flake-compat";
