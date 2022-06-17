@@ -2,12 +2,12 @@
 let
   vim-solarized8 = pkgs.vimUtils.buildVimPluginFrom2Nix {
     pname = "vim-solarized8";
-    version = "2019-12-11";
+    version = "2022-05-03";
     src = pkgs.fetchFromGitHub {
       owner = "lifepillar";
       repo = "vim-solarized8";
-      rev = "5df7666374ead07a482605b53a0f36c27dc17e8d";
-      sha256 = "1nvlb00lajzbhfsbsjw6f7hi37xrnyfhf0a7cgjvf3jp2piwjs2d";
+      rev = "9f9b7951975012ce51766356c7c28ba56294f9e8";
+      sha256 = "1qg9n6c70jyyh38fjs41j9vcj54qmhkkyzna0la7bwsycqfxbs2x";
     };
   };
 
