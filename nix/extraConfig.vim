@@ -20,7 +20,11 @@ set t_Co=16
 let g:solarized_use16=1
 "let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 "let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-colorscheme solarized8
+if $TMUX !~ 'tmate'
+  colorscheme solarized8
+else
+  colorscheme torte
+endif
 set termencoding=utf-8
 set encoding=utf-8
 set foldlevel=1
