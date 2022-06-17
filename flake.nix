@@ -28,7 +28,7 @@
           tweag = ./nix/profiles/tweag.nix;
         }) //
         (lib.hmConfigurations "x86_64-linux" {
-          server = ./nix/profiles/base.nix;
+          ytaraday = ./nix/profiles/base.nix;
         });
       checks = lib.homeConfigurationsChecks self.homeConfigurations;
     };

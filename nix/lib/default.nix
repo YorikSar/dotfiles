@@ -30,7 +30,7 @@
               ];
             };
           };
-          homeDirectory = "/Users/${name}";
+          homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${name}" else "/home/${name}";
         };
     in
     attrs: builtins.mapAttrs buildConfig attrs;
