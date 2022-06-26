@@ -41,6 +41,9 @@ in
               };
             }
           ];
+          extraSpecialArgs = {
+            inherit nixpkgs;
+          };
         };
     in
     attrs: builtins.mapAttrs buildConfig attrs;
