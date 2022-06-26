@@ -1,36 +1,46 @@
-{ nixpkgs, home-manager }: {
+{ nixpkgs, home-manager }:
+let
+  hmNixpkgsRegistry =
+    {
+      home.file.".config/nix/registry.json".text = builtins.toJSON {
+        version = 2;
+        flakes = [
+          {
+            from = {
+              id = "nixpkgs";
+              type = "indirect";
+            };
+            to = {
+              lastModified = nixpkgs.lastModified;
+              narHash = nixpkgs.narHash;
+              owner = "NixOS";
+              repo = "nixpkgs";
+              rev = nixpkgs.rev;
+              type = "github";
+            };
+          }
+        ];
+      };
+    };
+in
+{
   hmConfigurations = system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
       buildConfig = name: profile:
         home-manager.lib.homeManagerConfiguration {
-          inherit system pkgs;
-          username = name;
-          configuration = {
-            imports = [
-              profile
-            ];
-            home.file.".config/nix/registry.json".text = builtins.toJSON {
-              version = 2;
-              flakes = [
-                {
-                  from = {
-                    id = "nixpkgs";
-                    type = "indirect";
-                  };
-                  to = {
-                    lastModified = nixpkgs.lastModified;
-                    narHash = nixpkgs.narHash;
-                    owner = "NixOS";
-                    repo = "nixpkgs";
-                    rev = nixpkgs.rev;
-                    type = "github";
-                  };
-                }
-              ];
-            };
-          };
-          homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${name}" else "/home/${name}";
+          inherit pkgs;
+          modules = [
+            profile
+            hmNixpkgsRegistry
+            {
+              home = {
+                username = name;
+                homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${name}" else "/home/${name}";
+                stateVersion = "22.05";
+              };
+            }
+          ];
         };
     in
     attrs: builtins.mapAttrs buildConfig attrs;
