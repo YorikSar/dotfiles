@@ -4,14 +4,14 @@
   programs.htop = {
     enable = true;
     settings = {
-      hide_threads = true;
-      left_meters = [
-        "LeftCPUs"
+      hide_userland_threads = true;
+      column_meters_0 = [
+        "LeftCPUs2"
         "Memory"
         "Swap"
       ];
-      right_meters = [
-        "RightCPUs"
+      column_meters_1 = [
+        "RightCPUs2"
         "Tasks"
         "LoadAverage"
         "Uptime"
