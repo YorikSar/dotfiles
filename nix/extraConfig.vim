@@ -31,3 +31,9 @@ set foldlevel=1
 
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+
+" paste in terminal mode
+for c in ['0', '+', '-', '"']
+  exe 'tnoremap <C-r>' . c . ' <Cmd>put ' . c . '<cr>'
+endfor
+tnoremap <C-r><Space> <C-r>
