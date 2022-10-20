@@ -21,7 +21,7 @@
     in
     {
       homeConfigurations =
-        (lib.hmConfigurations "x86_64-darwin" {
+        (lib.hmConfigurations "aarch64-darwin" {
           yorik = ./nix/profiles/home.nix;
           mira = ./nix/profiles/mirantis.nix;
           tweag = ./nix/profiles/tweag.nix;
