@@ -8,7 +8,7 @@
   };
 
   home.file.".config/nix/nix.conf".text = ''
-    experimental-features = nix-command flakes
+    experimental-features = nix-command flakes repl-flake
   '';
 
   programs.neovim = {
