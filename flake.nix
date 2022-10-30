@@ -14,21 +14,24 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }:
-    let
+    {
       lib = import ./nix/lib {
         inherit nixpkgs home-manager;
       };
-    in
-    {
+      homeProfiles = with nixpkgs.lib; listToAttrs (map
+        (fileName:
+          nameValuePair (removeSuffix ".nix" fileName) (import ./nix/profiles/${fileName})
+        )
+        (attrNames (builtins.readDir ./nix/profiles)));
       homeConfigurations =
-        (lib.hmConfigurations "aarch64-darwin" {
-          yorik = ./nix/profiles/home.nix;
-          mira = ./nix/profiles/mirantis.nix;
-          tweag = ./nix/profiles/tweag.nix;
+        (self.lib.hmConfigurations "aarch64-darwin" {
+          yorik = self.homeProfiles.home;
+          mira = self.homeProfiles.mirantis;
+          tweag = self.homeProfiles.tweag;
         }) //
-        (lib.hmConfigurations "x86_64-linux" {
-          ytaraday = ./nix/profiles/base.nix;
+        (self.lib.hmConfigurations "x86_64-linux" {
+          ytaraday = self.homeProfiles.base;
         });
-      checks = lib.homeConfigurationsChecks self.homeConfigurations;
+      checks = self.lib.homeConfigurationsChecks self.homeConfigurations;
     };
 }
