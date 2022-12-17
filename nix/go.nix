@@ -7,6 +7,7 @@
     extraConfig = ''
       let g:LanguageClient_serverCommands['go'] = ['gopls']
     '';
+    treeSitterPlugins = p: [ p.go ];
   };
   home.packages = with pkgs; [
     gotools
