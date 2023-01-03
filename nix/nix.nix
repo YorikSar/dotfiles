@@ -45,6 +45,7 @@ in
   home.packages = with pkgs; [
     lorri
     nixUnstable
+    nixos-rebuild
     rnix-lsp
     rnix-lsp-alejandra
   ];
