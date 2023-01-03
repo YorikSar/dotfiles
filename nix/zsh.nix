@@ -3,6 +3,7 @@
 {
   programs.zsh = {
     enable = true;
+    enableSyntaxHighlighting = true;
     defaultKeymap = "viins";
     initExtraBeforeCompInit = "
       zstyle ':completion:*' auto-description 'specify: %d'
