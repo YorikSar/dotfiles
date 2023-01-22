@@ -11,12 +11,17 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    darwin = {
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    darwin,
     ...
   }: {
     lib = import ./nix/lib {
@@ -38,6 +43,19 @@
       // (self.lib.hmConfigurations "x86_64-linux" {
         ytaraday = self.homeProfiles.base;
       });
-    checks = self.lib.homeConfigurationsChecks self.homeConfigurations;
+    darwinConfigurations.leya = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      modules = [./nix/darwin/leya.nix];
+    };
+    checks = let
+      hmChecks = self.lib.homeConfigurationsChecks self.homeConfigurations;
+      darwinChecks = {
+        aarch64-darwin.leya = self.darwinConfigurations.leya.system;
+      };
+    in
+      hmChecks
+      // {
+        aarch64-darwin = hmChecks.aarch64-darwin // darwinChecks.aarch64-darwin;
+      };
   };
 }
