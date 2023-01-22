@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-let
+{pkgs, ...}: let
   nix-upgrade = pkgs.substituteAll {
     name = "nix-upgrade";
     src = ./nix-upgrade.sh;
@@ -8,7 +7,7 @@ let
 
     inherit (pkgs) runtimeShell;
   };
-in { 
+in {
   home.packages = [
     nix-upgrade
   ];

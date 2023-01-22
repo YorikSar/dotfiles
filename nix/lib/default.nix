@@ -1,56 +1,57 @@
-{ nixpkgs, home-manager }:
-let
-  hmNixpkgsRegistry =
-    {
-      home.file.".config/nix/registry.json".text = builtins.toJSON {
-        version = 2;
-        flakes = [
+{
+  nixpkgs,
+  home-manager,
+}: let
+  hmNixpkgsRegistry = {
+    home.file.".config/nix/registry.json".text = builtins.toJSON {
+      version = 2;
+      flakes = [
+        {
+          from = {
+            id = "nixpkgs";
+            type = "indirect";
+          };
+          to = {
+            lastModified = nixpkgs.lastModified;
+            narHash = nixpkgs.narHash;
+            owner = "NixOS";
+            repo = "nixpkgs";
+            rev = nixpkgs.rev;
+            type = "github";
+          };
+        }
+      ];
+    };
+  };
+in {
+  hmConfigurations = system: let
+    pkgs = nixpkgs.legacyPackages.${system};
+    buildConfig = name: profile:
+      home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          profile
+          hmNixpkgsRegistry
           {
-            from = {
-              id = "nixpkgs";
-              type = "indirect";
-            };
-            to = {
-              lastModified = nixpkgs.lastModified;
-              narHash = nixpkgs.narHash;
-              owner = "NixOS";
-              repo = "nixpkgs";
-              rev = nixpkgs.rev;
-              type = "github";
+            home = {
+              username = name;
+              homeDirectory =
+                if pkgs.stdenv.isDarwin
+                then "/Users/${name}"
+                else "/home/${name}";
+              stateVersion = "22.05";
             };
           }
         ];
-      };
-    };
-in
-{
-  hmConfigurations = system:
-    let
-      pkgs = nixpkgs.legacyPackages.${system};
-      buildConfig = name: profile:
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            profile
-            hmNixpkgsRegistry
-            {
-              home = {
-                username = name;
-                homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${name}" else "/home/${name}";
-                stateVersion = "22.05";
-              };
-            }
-          ];
-          extraSpecialArgs = {
-            inherit nixpkgs;
-          };
+        extraSpecialArgs = {
+          inherit nixpkgs;
         };
-    in
+      };
+  in
     attrs: builtins.mapAttrs buildConfig attrs;
-  homeConfigurationsChecks = cfgs:
-    let
-      lib = nixpkgs.lib;
-    in
+  homeConfigurationsChecks = cfgs: let
+    lib = nixpkgs.lib;
+  in
     lib.trivial.pipe cfgs [
       # drop everything except activationPackage
       (lib.mapAttrs (name: cfg: cfg.activationPackage))

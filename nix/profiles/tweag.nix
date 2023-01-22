@@ -1,6 +1,8 @@
-{ config, pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./common.nix
     ./macos.nix

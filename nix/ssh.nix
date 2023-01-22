@@ -1,10 +1,12 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   mosh = pkgs.mosh.overrideAttrs (old: {
     patches = builtins.filter (p: !(lib.hasSuffix "ssh_path.patch" p)) old.patches;
   });
-in
-{
+in {
   programs.ssh = {
     enable = true;
     controlMaster = "auto";

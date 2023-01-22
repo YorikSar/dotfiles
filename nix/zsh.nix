@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.zsh = {
     enable = true;
     enableSyntaxHighlighting = true;
@@ -30,7 +28,7 @@
       precmd () {
         PROMPT="$IPROMPT"
       }
-      
+
       zle-keymap-select() {
         if [ "$KEYMAP" = "vicmd" ]; then
           PROMPT="$CPROMPT"

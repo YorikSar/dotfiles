@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   vim-solarized8 = pkgs.vimUtils.buildVimPluginFrom2Nix {
     pname = "vim-solarized8";
     version = "2022-05-03";
@@ -10,9 +14,7 @@ let
       sha256 = "1qg9n6c70jyyh38fjs41j9vcj54qmhkkyzna0la7bwsycqfxbs2x";
     };
   };
-
-in
-{
+in {
   imports = [
     ./languageclient.nix
     ./vim-fugitive.nix
@@ -22,14 +24,15 @@ in
       type = lib.mkOptionType {
         name = "tree-sitter-plugins";
         description = "function suitable for nvim-treesitter.withPlugins";
-        check = with lib.types;
-          let
-            grammars = pkgs.tree-sitter.builtGrammars // pkgs.vimPlugins.nvim-treesitter.builtGrammars;
-          in
-          (x: if builtins.isFunction x then builtins.isList (x grammars) else false);
+        check = with lib.types; let
+          grammars = pkgs.tree-sitter.builtGrammars // pkgs.vimPlugins.nvim-treesitter.builtGrammars;
+        in (x:
+          if builtins.isFunction x
+          then builtins.isList (x grammars)
+          else false);
         merge = loc: defs: p: lib.concatMap (f: f p) (lib.getValues defs);
       };
-      default = (_: [ ]);
+      default = _: [];
       defaultText = lib.literalExpression "(p: [ ])";
       example = lib.literalExpression "(p: with p; [ c java ])";
     };
