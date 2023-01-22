@@ -12,7 +12,7 @@
       inherit src;
       cargoDeps = old.cargoDeps.overrideAttrs (old: {
         inherit src;
-        outputHash = "sha256-nT+tvOYiqjxLL+bHH/6PMPJbZDg5znaHEJol4LkCBCA=";
+        outputHash = "sha256-3QYXqjJcx3OLVYV4dEHXpTEjufflVdG/oWCjkwIhypQ=";
       });
       cargoBuildFlags = ["--no-default-features" "--features" "alejandra"];
       postInstall = ''
