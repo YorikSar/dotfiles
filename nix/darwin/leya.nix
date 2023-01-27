@@ -6,6 +6,7 @@
   services.nix-daemon.enable = true;
   nix = {
     configureBuildUsers = true;
+    distributedBuilds = true;
     settings = {
       auto-optimise-store = true;
       builders-use-substitutes = true;
