@@ -49,6 +49,13 @@ in {
         vim-dispatch
         vim-obsession
         {
+          plugin = nvim-surround;
+          type = "lua";
+          config = ''
+            require("nvim-surround").setup({})
+          '';
+        }
+        {
           plugin = nvim-treesitter.withPlugins config.programs.neovim.treeSitterPlugins;
           type = "lua";
           config = ''
