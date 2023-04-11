@@ -44,6 +44,7 @@ in {
     nixos-rebuild
     rnix-lsp
     rnix-lsp-alejandra
+    nix-output-monitor
   ];
 
   launchd = {
