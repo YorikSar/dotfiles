@@ -8,6 +8,7 @@
     ./macos.nix
     ../private/tweag.nix
     ../bazel.nix
+    ../nickel.nix
   ];
 
   programs.git.userEmail = lib.mkOverride 10 "yuriy.taraday@tweag.io";

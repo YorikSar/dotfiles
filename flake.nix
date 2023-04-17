@@ -15,6 +15,7 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nickel.url = "github:tweag/nickel";
   };
 
   outputs = {
@@ -22,10 +23,11 @@
     nixpkgs,
     home-manager,
     darwin,
+    nickel,
     ...
   }: {
     lib = import ./nix/lib {
-      inherit nixpkgs home-manager;
+      inherit nixpkgs home-manager nickel;
     };
     homeProfiles = with nixpkgs.lib;
       listToAttrs (map
