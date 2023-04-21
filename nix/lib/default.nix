@@ -8,6 +8,9 @@
       version = 2;
       flakes = [
         {
+          # Workaround for a bug in Nix, thanks Théophane
+          # See https://github.com/NixOS/nix/issues/6759#issuecomment-1176617483
+          exact = true;
           from = {
             id = "nixpkgs";
             type = "indirect";
