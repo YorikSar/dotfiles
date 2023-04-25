@@ -36,15 +36,11 @@
             nameValuePair (removeSuffix ".nix" fileName) (import ./nix/profiles/${fileName})
         )
         (attrNames (builtins.readDir ./nix/profiles)));
-    homeConfigurations =
-      (self.lib.hmConfigurations "aarch64-darwin" {
-        yorik = self.homeProfiles.home;
-        mira = self.homeProfiles.mirantis;
-        tweag = self.homeProfiles.tweag;
-      })
-      // (self.lib.hmConfigurations "x86_64-linux" {
-        ytaraday = self.homeProfiles.base;
-      });
+    homeConfigurations = self.lib.hmConfigurations "aarch64-darwin" {
+      yorik = self.homeProfiles.home;
+      mira = self.homeProfiles.mirantis;
+      tweag = self.homeProfiles.tweag;
+    };
     darwinConfigurations.leya = darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [./nix/darwin/leya.nix];
