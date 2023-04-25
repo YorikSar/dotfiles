@@ -6,5 +6,6 @@
     ../elm.nix
     ../private/home.nix
     ../beancount.nix
+    ../rust.nix
   ];
 }
