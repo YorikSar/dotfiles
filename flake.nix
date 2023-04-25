@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:YorikSar/home-manager/nvim-treesitter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-compat = {

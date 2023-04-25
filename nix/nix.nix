@@ -35,7 +35,7 @@ in {
       let g:LanguageClient_serverCommands['nix'] = ['rnix-lsp']
       command! UseAlejandra call LanguageClient#shutdown()|let g:LanguageClient_serverCommands['nix'] = ['rnix-lsp-alejandra']|call LanguageClient#startServer()
     '';
-    treeSitterPlugins = p: [p.nix];
+    treesitter.grammars = p: [p.nix];
   };
 
   home.packages = with pkgs; [

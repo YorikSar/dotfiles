@@ -12,7 +12,7 @@ in {
     plugins = with pkgs.vimPlugins; [
       vim-beancount
     ];
-    treeSitterPlugins = p: [p.beancount];
+    treesitter.grammars = p: [p.beancount];
   };
   home.packages = with pkgs; [
     beancount

@@ -251,20 +251,19 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "utils": "utils"
+        ]
       },
       "locked": {
-        "lastModified": 1681162249,
-        "narHash": "sha256-jh5fLaTxR5XowXA0CN/1Gs2qbvVdmdPCSeO424XWZLI=",
-        "owner": "nix-community",
+        "lastModified": 1682415808,
+        "narHash": "sha256-kiTsWLOj2N8CNCyhrclbVY4wohmKH1WAj2nwnOQ6pbE=",
+        "owner": "YorikSar",
         "repo": "home-manager",
-        "rev": "4e79c6a414ce59fd1a53ab77899c77ab87774e6b",
+        "rev": "c68a7c2f372dae995b0f0211eaad9e9f88214ccc",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
-        "ref": "master",
+        "owner": "YorikSar",
+        "ref": "nvim-treesitter",
         "repo": "home-manager",
         "type": "github"
       }
@@ -530,21 +529,6 @@
       "original": {
         "owner": "tweag",
         "repo": "topiary",
-        "type": "github"
-      }
-    },
-    "utils": {
-      "locked": {
-        "lastModified": 1678901627,
-        "narHash": "sha256-U02riOqrKKzwjsxc/400XnElV+UtPUQWpANPlyazjH0=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "93a2b84fc4b70d9e089d029deacc3583435c2ed6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
         "type": "github"
       }
     }
