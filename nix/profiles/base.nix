@@ -1,7 +1,4 @@
-{ config
-, pkgs
-, ...
-}: {
+{pkgs, ...}: {
   imports = [
     ../git.nix
     ../htop.nix
@@ -13,7 +10,6 @@
     ../terraform.nix
   ];
   programs.home-manager.enable = true;
-  home.file.".config/home-manager/flake.nix".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/src/github.com/YorikSar/dotfiles/flake.nix";
   home.packages = with pkgs; [
     jq
     du-dust
