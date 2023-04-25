@@ -72,11 +72,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1681154394,
-        "narHash": "sha256-avnu1K9AuouygBiwVKuDp6emiTET43az3rcpv0ctLjc=",
+        "lastModified": 1682009832,
+        "narHash": "sha256-QdNOeFE7sI+0ddqVfn9vQDCUs7OdxhJ7evo9sdyP82Y=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "025912529dd0b31dead95519e944ea05f1ad56f2",
+        "rev": "a1ee4d333b092bc055655fb06229eb3013755812",
         "type": "github"
       },
       "original": {
@@ -278,11 +278,11 @@
         "topiary": "topiary"
       },
       "locked": {
-        "lastModified": 1681477719,
-        "narHash": "sha256-NEioRjEoDT/Bj9nKVdJPxqfTWAf5H19ITEZJhlcOU3Q=",
+        "lastModified": 1682352399,
+        "narHash": "sha256-uCgQxcEomUJFOQLlPLQzTtTfhTLj+8eNS2aRUyaJ0gY=",
         "owner": "tweag",
         "repo": "nickel",
-        "rev": "b385469d705d12b8291795e53767225b2825fad5",
+        "rev": "f2652dc27fe534cd1e40cd3574be4ec189949b2f",
         "type": "github"
       },
       "original": {
@@ -355,11 +355,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1681124868,
-        "narHash": "sha256-B93QD0zFE6yc7R5F0bwdhY+y7s5UU9nrlhAAw1OA9mI=",
+        "lastModified": 1682109806,
+        "narHash": "sha256-d9g7RKNShMLboTWwukM+RObDWWpHKaqTYXB48clBWXI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "21f48f0d273ef58c46b9b4c14cf5706c72a36e43",
+        "rev": "2362848adf8def2866fabbffc50462e929d7fffb",
         "type": "github"
       },
       "original": {

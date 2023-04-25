@@ -4,15 +4,15 @@
       owner = "nix-community";
       repo = "rnix-lsp";
       # https://github.com/nix-community/rnix-lsp/pull/89
-      rev = "9189b50b34285b2a9de36a439f6c990fd283c9c7";
-      sha256 = "sha256-ZnUtvwkcz7QlAiqQxhI4qVUhtVR+thLhG3wQlle7oZg=";
+      rev = "936ae39a1a63f39f47a36f3be32100e5343e2cb7";
+      sha256 = "sha256-f6tRwuMUQcuhxDuQN78b1YNYIiIrEFS5sGfLFUTbw+E=";
     };
   in
     pkgs.rnix-lsp.overrideAttrs (old: {
       inherit src;
       cargoDeps = old.cargoDeps.overrideAttrs (old: {
         inherit src;
-        outputHash = "sha256-3QYXqjJcx3OLVYV4dEHXpTEjufflVdG/oWCjkwIhypQ=";
+        outputHash = "sha256-pzJwIx9xY1sBGnAxr2An55npoWWIdZkfX/GItMUsJmE=";
       });
       cargoBuildFlags = ["--no-default-features" "--features" "alejandra"];
       postInstall = ''
