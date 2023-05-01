@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ../private/darwin/home.nix
     ../private/darwin/tweag.nix
@@ -16,5 +16,6 @@
       ];
       sandbox = true;
     };
+    package = pkgs.nixUnstable;
   };
 }
