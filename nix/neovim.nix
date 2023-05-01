@@ -3,18 +3,7 @@
   pkgs,
   lib,
   ...
-}: let
-  vim-solarized8 = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "vim-solarized8";
-    version = "2023-02-25";
-    src = pkgs.fetchFromGitHub {
-      owner = "lifepillar";
-      repo = "vim-solarized8";
-      rev = "bcd4e74e9850fd59ee0294a5c3ae958ed535cc52";
-      sha256 = "sha256-Shdyke6V26GOMIVy8FuVTzn3TNMYcvo0razxEIrHEAM=";
-    };
-  };
-in {
+}: {
   imports = [
     ./languageclient.nix
     ./vim-fugitive.nix
