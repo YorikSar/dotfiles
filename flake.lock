@@ -254,16 +254,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1682415808,
-        "narHash": "sha256-kiTsWLOj2N8CNCyhrclbVY4wohmKH1WAj2nwnOQ6pbE=",
-        "owner": "YorikSar",
+        "lastModified": 1682977601,
+        "narHash": "sha256-F1Va/Uiw2tVNn27FLqWyBkiqDyIm/eCamw9wA/GK8Fw=",
+        "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c68a7c2f372dae995b0f0211eaad9e9f88214ccc",
+        "rev": "0e4c33d76006c9080d2f228ba1c2308e3e4d7be6",
         "type": "github"
       },
       "original": {
-        "owner": "YorikSar",
-        "ref": "nvim-treesitter",
+        "owner": "nix-community",
+        "ref": "master",
         "repo": "home-manager",
         "type": "github"
       }

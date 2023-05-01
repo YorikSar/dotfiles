@@ -11,7 +11,9 @@
     extraConfig = ''
       let g:LanguageClient_serverCommands['go'] = ['gopls']
     '';
-    treesitter.grammars = p: [p.go];
+    plugins = with pkgs.vimPlugins; [
+      (nvim-treesitter.withPlugins (p: [p.go]))
+    ];
   };
   home.packages = with pkgs; [
     gotools

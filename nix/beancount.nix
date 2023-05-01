@@ -11,8 +11,8 @@ in {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       vim-beancount
+      (nvim-treesitter.withPlugins (p: [p.beancount]))
     ];
-    treesitter.grammars = p: [p.beancount];
   };
   home.packages = with pkgs; [
     beancount
