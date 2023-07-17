@@ -1,6 +1,6 @@
 set nocompatible
 filetype off
-set background=dark
+source ~/.local/state/nvim/background.vim
 filetype plugin indent on
 autocmd BufEnter * set colorcolumn=80
 syntax on

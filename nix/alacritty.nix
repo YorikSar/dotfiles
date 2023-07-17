@@ -14,12 +14,18 @@ in {
     enable = true;
     settings = {
       import = [
-        "${alacritty-themes}/themes/solarized_dark.yaml"
+        "~/.local/state/alacritty/theme.yaml"
       ];
       window.startup_mode = "Fullscreen";
       font.normal.family = "Hack";
     };
   };
+  home.activation.alacritty-theme = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    $DRY_RUN_CMD mkdir -p $VERBOSE_ARG "$HOME/.local/state/alacritty"
+    if [ ! -e  "$HOME/.local/state/alacritty/theme.yaml" ]; then
+      $DRY_RUN_CMD ln -s $VERBOSE_ARG "${alacritty-themes}/themes/solarized_dark.yaml" "$HOME/.local/state/alacritty/theme.yaml"
+    fi
+  '';
   services.dark-mode-notify.onSwitch = [
     ''
       if [ "$DARKMODE" -eq 0 ]; then
@@ -27,7 +33,9 @@ in {
       else
         theme=dark
       fi
-      ${lib.getExe pkgs.yq} < ${alacritty-themes}/themes/solarized_''${theme}.yaml --raw-output --from-file ${builtins.toFile "parse-theme.jq" ''
+      themefile="${alacritty-themes}/themes/solarized_''${theme}.yaml"
+      ln -fs "$themefile" "$HOME/.local/state/alacritty/theme.yaml"
+      ${lib.getExe pkgs.yq} < "$themefile" --raw-output --from-file ${builtins.toFile "parse-theme.jq" ''
         [
           paths(strings) as $p  # iterate over attribute paths to all strings
           | ($p|join(".")) + "=\"" + getpath($p) + "\""  # generate lines like `path.to.attr = "value"`
