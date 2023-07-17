@@ -15,26 +15,20 @@ in {
         default = pkgs.callPackage pkgs/dark-mode-notify.nix {};
       };
 
-    onSwitchInputs = lib.mkOption {
-      type = lib.types.listOf lib.types.package;
-      default = [];
-      description = ''
-        List of packages that should be available in PATH for onSwitch script.
-      '';
-    };
-
     onSwitch = lib.mkOption {
-      type = lib.types.lines;
-      default = "";
-      example = ''
-        if [ "$DARKMODE" -eq 0 ]; then
-          osascript -e 'display notification "Dark mode is off"'
-        else
-          osascript -e 'display notification "Dark mode is on"'
-        fi
-      '';
+      type = lib.types.listOf lib.types.lines;
+      default = [];
+      example = [
+        ''
+          if [ "$DARKMODE" -eq 0 ]; then
+            osascript -e 'display notification "Dark mode is off"'
+          else
+            osascript -e 'display notification "Dark mode is on"'
+          fi
+        ''
+      ];
       description = ''
-        Script to execute when dark mode changes.
+        List of scripts to execute when dark mode changes.
         The environment variable DARKMODE will be set to either 1 or 0.
       '';
     };
@@ -44,8 +38,11 @@ in {
       readOnly = true;
       default = pkgs.writeShellApplication {
         name = "dark-mode-onswitch";
-        runtimeInputs = cfg.onSwitchInputs;
-        text = cfg.onSwitch;
+        text = lib.concatStringsSep "\n" (map (script: "${lib.getExe (pkgs.writeShellApplication {
+            name = "dark-mode-onswitch-script.sh";
+            text = script;
+          })} || true")
+          cfg.onSwitch);
       };
     };
   };
