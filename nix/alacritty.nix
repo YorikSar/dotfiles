@@ -20,6 +20,9 @@ in {
       font.normal.family = "Hack";
     };
   };
+  home.packages = [
+    pkgs.hack-font
+  ];
   home.activation.alacritty-theme = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD mkdir -p $VERBOSE_ARG "$HOME/.local/state/alacritty"
     if [ ! -e  "$HOME/.local/state/alacritty/theme.yaml" ]; then
