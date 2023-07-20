@@ -41,7 +41,7 @@ in {
           | ($p|join(".")) + "=\"" + getpath($p) + "\""  # generate lines like `path.to.attr = "value"`
         ]|.[]  # collect all elements of array as separate values
       ''} | while read -r l; do
-        ${lib.getExe pkgs.alacritty} msg config "$l"
+        ${lib.getExe pkgs.alacritty} msg config --window-id -1 "$l"
       done
     ''
   ];
