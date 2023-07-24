@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ../git.nix
+    ../gh.nix
     ../htop.nix
     ../neovim.nix
     ../tmux.nix
