@@ -2,7 +2,7 @@
   imports = [
     ./common.nix
     ./macos.nix
-    #../mpv.nix
+    ../mpv.nix
     #../elm.nix
     ../private/home.nix
     #../beancount.nix
