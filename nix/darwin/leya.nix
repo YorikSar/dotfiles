@@ -15,6 +15,8 @@
         "aarch64-darwin"
       ];
       sandbox = true;
+      min-free = 10 * 1024 * 1024 * 1024;
+      max-free = 50 * 1024 * 1024 * 1024;
     };
     package = pkgs.nixUnstable;
   };
