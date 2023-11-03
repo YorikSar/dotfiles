@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # latest opensource terraform version
+    tf-nixpkgs.url = "github:NixOS/nixpkgs/e12483116b3b51a185a33a272bf351e357ba9a99";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";

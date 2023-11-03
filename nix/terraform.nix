@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.neovim = {
     extraConfig = ''
       let g:LanguageClient_serverCommands['hcl'] = ['terraform-ls','serve']
@@ -9,7 +13,7 @@
       (nvim-treesitter.withPlugins (p: [p.hcl p.terraform]))
     ];
   };
-  home.packages = with pkgs; [
+  home.packages = with inputs.tf-nixpkgs.legacyPackages.${pkgs.system}; [
     terraform
     terraform-ls
   ];
