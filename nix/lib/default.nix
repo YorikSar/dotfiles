@@ -1,8 +1,8 @@
 {
-  nixpkgs,
   home-manager,
-  nickel,
-}: let
+  nixpkgs,
+  ...
+} @ inputs: let
   hmNixpkgsRegistry = {
     home.file.".config/nix/registry.json".text = builtins.toJSON {
       version = 2;
@@ -50,7 +50,7 @@ in {
           }
         ];
         extraSpecialArgs = {
-          inherit nixpkgs nickel;
+          inherit inputs;
         };
       };
   in

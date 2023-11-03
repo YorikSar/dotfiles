@@ -1,6 +1,6 @@
 {
   pkgs,
-  nixpkgs,
+  inputs,
   ...
 }: {
   programs.go = {
@@ -22,7 +22,7 @@
     (
       if !stdenv.isDarwin
       then golangci-lint
-      else nixpkgs.legacyPackages.aarch64-darwin.golangci-lint
+      else inputs.nixpkgs.legacyPackages.aarch64-darwin.golangci-lint
     )
     clang # looks like gopls needs this
   ];

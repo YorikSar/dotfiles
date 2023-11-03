@@ -25,10 +25,8 @@
     darwin,
     nickel,
     ...
-  }: {
-    lib = import ./nix/lib {
-      inherit nixpkgs home-manager nickel;
-    };
+  } @ inputs: {
+    lib = import ./nix/lib inputs;
     homeProfiles = with nixpkgs.lib;
       listToAttrs (map
         (

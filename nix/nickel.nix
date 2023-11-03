@@ -1,6 +1,6 @@
 {
   pkgs,
-  nickel,
+  inputs,
   ...
 }: {
   programs.neovim = {
@@ -19,6 +19,6 @@
     ];
   };
   home.packages = [
-    nickel.packages.${pkgs.system}.lsp-nls
+    inputs.nickel.packages.${pkgs.system}.lsp-nls
   ];
 }
