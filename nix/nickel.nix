@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.neovim = {
     extraConfig = ''
       let g:LanguageClient_serverCommands['nickel'] = ['nls']
@@ -18,7 +14,7 @@
       }))
     ];
   };
-  home.packages = [
-    inputs.nickel.packages.${pkgs.system}.lsp-nls
+  home.packages = with pkgs; [
+    nls
   ];
 }

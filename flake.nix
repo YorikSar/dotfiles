@@ -17,7 +17,6 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nickel.url = "github:tweag/nickel";
   };
 
   outputs = {
@@ -25,7 +24,6 @@
     nixpkgs,
     home-manager,
     darwin,
-    nickel,
     ...
   } @ inputs: {
     lib = import ./nix/lib inputs;
