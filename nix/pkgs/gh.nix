@@ -10,23 +10,23 @@
 }:
 buildGoModule rec {
   pname = "gh";
-  version = "2.32.1";
+  version = "2.38.0";
 
   src = fetchFromGitHub {
     owner = "cli";
     repo = "cli";
     rev = "v${version}";
-    hash = "sha256-DfcafkgauO0mlMEJTfR7hjnkY1QJ4dUyrWv/bqJlVAo=";
+    hash = "sha256-t+JpCxJM2PO9nT9nYn/Rsz/s2lQQviggbjuEy0OQV88=";
   };
 
   patches = [
     (fetchpatch {
-      url = "https://github.com/yoriksar/cli/commit/d10a0de4579cd31726b5bcba60d73c8aea338a77.patch";
-      sha256 = "sha256-2YSu4+aPoza8eB6a9DZvBYVu4ybd6ioAPIBAb+c1GEA=";
+      url = "https://github.com/yoriksar/cli/commit/38c90e6245bbbb14cc1637d4c326b92938ecade8.patch";
+      sha256 = "sha256-FLoSomcfSiG+PWGSQmzACl3t4xQ4szTg0gDRM7XtvGA=";
     })
   ];
 
-  vendorHash = "sha256-bGgCY80QfafHGDJKi+6KtBQM9rU4KrRYVViPm/eIX9g=";
+  vendorHash = "sha256-K8EYtsEOtNjMPiXR4brkvv8Gfl7naQOivkc2XSn+798=";
 
   nativeBuildInputs = [installShellFiles];
 
@@ -65,6 +65,7 @@ buildGoModule rec {
     homepage = "https://cli.github.com/";
     changelog = "https://github.com/cli/cli/releases/tag/v${version}";
     license = licenses.mit;
+    mainProgram = "gh";
     maintainers = with maintainers; [zowoq];
   };
 }
