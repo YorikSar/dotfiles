@@ -3,6 +3,7 @@
     ../private/darwin/home.nix
     ../private/darwin/tweag.nix
   ];
+  programs.zsh.enable = true;
   services.nix-daemon.enable = true;
   nix = {
     configureBuildUsers = true;
