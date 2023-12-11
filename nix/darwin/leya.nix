@@ -3,7 +3,10 @@
     ../private/darwin/home.nix
     ../private/darwin/tweag.nix
   ];
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    promptInit = "setopt transientrprompt";
+  };
   services.nix-daemon.enable = true;
   nix = {
     configureBuildUsers = true;
