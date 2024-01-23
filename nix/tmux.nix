@@ -27,7 +27,7 @@ in {
   programs.tmux = {
     enable = true;
     escapeTime = 0;
-    historyLimit = 10000000;
+    historyLimit = 100000;
     keyMode = "vi";
     terminal = "tmux-256color";
     secureSocket = false;
