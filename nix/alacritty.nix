@@ -2,14 +2,7 @@
   lib,
   pkgs,
   ...
-}: let
-  alacritty-themes = pkgs.fetchFromGitHub {
-    owner = "alacritty";
-    repo = "alacritty-theme";
-    rev = "f03686afad05274f5fbd2507f85f95b1a6542df4";
-    hash = "sha256-457kKE3I4zGf1EKkEoyZu0Fa/1O3yiryzHVEw2rNZt8=";
-  };
-in {
+}: {
   programs.alacritty = {
     enable = true;
     settings = {
@@ -26,7 +19,7 @@ in {
   home.activation.alacritty-theme = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD mkdir -p $VERBOSE_ARG "$HOME/.local/state/alacritty"
     if [ ! -e  "$HOME/.local/state/alacritty/theme.toml" ]; then
-      $DRY_RUN_CMD ln -s $VERBOSE_ARG "${alacritty-themes}/themes/solarized_dark.toml" "$HOME/.local/state/alacritty/theme.toml"
+      $DRY_RUN_CMD ln -s $VERBOSE_ARG "${pkgs.alacritty-theme}/solarized_dark.toml" "$HOME/.local/state/alacritty/theme.toml"
     fi
   '';
   services.dark-mode-notify.onSwitch = [
@@ -36,7 +29,7 @@ in {
       else
         theme=dark
       fi
-      themefile="${alacritty-themes}/themes/solarized_''${theme}.toml"
+      themefile="${pkgs.alacritty-theme}/solarized_''${theme}.toml"
       ln -fs "$themefile" "$HOME/.local/state/alacritty/theme.toml"
       ${lib.getExe pkgs.yq} < "$themefile" --raw-output --from-file ${builtins.toFile "parse-theme.jq" ''
         [

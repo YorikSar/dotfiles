@@ -9,11 +9,7 @@ in {
   options.services.dark-mode-notify = {
     enable = lib.mkEnableOption "dark-mode-notify service";
 
-    package =
-      (lib.mkPackageOption pkgs "dark-mode-notify" {})
-      // {
-        default = pkgs.callPackage pkgs/dark-mode-notify.nix {};
-      };
+    package = lib.mkPackageOption pkgs "dark-mode-notify" {};
 
     onSwitch = lib.mkOption {
       type = lib.types.listOf lib.types.lines;
