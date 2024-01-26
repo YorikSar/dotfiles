@@ -18,7 +18,6 @@
   home.packages = with pkgs; [
     gotools
     gopls
-    dep
     (
       if !stdenv.isDarwin
       then golangci-lint
