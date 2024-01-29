@@ -4,6 +4,8 @@ ResMerger
 Rez
 SetFile
 SplitForks
+actool
+agvtool
 ar
 as
 asa
@@ -21,6 +23,7 @@ codesign_allocate
 cpp
 ctags
 ctf_insert
+desdp
 dsymutil
 dwarfdump
 flex
@@ -29,6 +32,7 @@ g++
 gatherheaderdoc
 gcc
 gcov
+genstrings
 git
 git-receive-pack
 git-shell
@@ -39,6 +43,8 @@ gnumake
 gperf
 hdxml2manxml
 headerdoc2html
+ibtool
+ictool
 indent
 install_name_tool
 ld
@@ -55,6 +61,7 @@ mig
 nm
 nmedit
 objdump
+opendiff
 otool
 pagestuff
 pip3
@@ -62,9 +69,12 @@ python3
 ranlib
 resolveLinks
 rpcgen
+sdef
+sdp
 segedit
 size
 sourcekit-lsp
+stapler
 strings
 strip
 swift
@@ -72,5 +82,12 @@ swiftc
 unifdef
 unifdefall
 vtool
+xcdebug
+xcodebuild
+xcrun
+xcscontrol
+xcsdiagnose
+xctrace
+xed
 xml2man
 yacc
