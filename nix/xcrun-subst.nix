@@ -17,4 +17,6 @@ in {
   home.packages = [
     xcrun-subst-all
   ];
+  # Some tools still try to execute these directly, so force xcrun to fail for them
+  programs.zsh.sessionVariables.DEVELOPER_DIR = "/no/xcode/tools/installed";
 }
