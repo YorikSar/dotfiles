@@ -26,7 +26,7 @@
         '';
       }
       {
-        plugin = nvim-treesitter;
+        plugin = nvim-treesitter.withPlugins (p: [p.vimdoc]);
         type = "lua";
         config = ''
           require('nvim-treesitter.configs').setup {
