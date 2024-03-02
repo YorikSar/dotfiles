@@ -10,6 +10,7 @@
     ../nix.nix
     ../terraform.nix
     ../dark-mode-notify.nix
+    ../nix-index.nix
   ];
   programs.home-manager.enable = true;
   home.packages = with pkgs; [
