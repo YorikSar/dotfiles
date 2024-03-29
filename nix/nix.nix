@@ -1,25 +1,4 @@
-{pkgs, ...}: let
-  rnix-lsp-alejandra = let
-    src = pkgs.fetchFromGitHub {
-      owner = "nix-community";
-      repo = "rnix-lsp";
-      # https://github.com/nix-community/rnix-lsp/pull/89
-      rev = "936ae39a1a63f39f47a36f3be32100e5343e2cb7";
-      sha256 = "sha256-f6tRwuMUQcuhxDuQN78b1YNYIiIrEFS5sGfLFUTbw+E=";
-    };
-  in
-    pkgs.rnix-lsp.overrideAttrs (old: {
-      inherit src;
-      cargoDeps = old.cargoDeps.overrideAttrs (old: {
-        inherit src;
-        outputHash = "sha256-pzJwIx9xY1sBGnAxr2An55npoWWIdZkfX/GItMUsJmE=";
-      });
-      cargoBuildFlags = ["--no-default-features" "--features" "alejandra"];
-      postInstall = ''
-        mv $out/bin/rnix-lsp $out/bin/rnix-lsp-alejandra
-      '';
-    });
-in {
+{pkgs, ...}: {
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
@@ -31,10 +10,6 @@ in {
   '';
 
   programs.neovim = {
-    extraConfig = ''
-      let g:LanguageClient_serverCommands['nix'] = ['rnix-lsp']
-      command! UseAlejandra call LanguageClient#shutdown()|let g:LanguageClient_serverCommands['nix'] = ['rnix-lsp-alejandra']|call LanguageClient#startServer()
-    '';
     plugins = with pkgs.vimPlugins; [
       (nvim-treesitter.withPlugins (p: [p.nix]))
     ];
@@ -44,8 +19,6 @@ in {
     lorri
     nixUnstable
     nixos-rebuild
-    rnix-lsp
-    rnix-lsp-alejandra
     nix-output-monitor
   ];
 
