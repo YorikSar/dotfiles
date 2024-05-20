@@ -10,23 +10,23 @@
 }:
 buildGoModule rec {
   pname = "gh";
-  version = "2.38.0";
+  version = "2.49.2";
 
   src = fetchFromGitHub {
     owner = "cli";
     repo = "cli";
     rev = "v${version}";
-    hash = "sha256-t+JpCxJM2PO9nT9nYn/Rsz/s2lQQviggbjuEy0OQV88=";
+    hash = "sha256-RevdHBF/7etEstUhsTO9KVK45KTiJnhAhAZAamuEUwk=";
   };
 
   patches = [
     (fetchpatch {
-      url = "https://github.com/yoriksar/cli/commit/38c90e6245bbbb14cc1637d4c326b92938ecade8.patch";
-      sha256 = "sha256-FLoSomcfSiG+PWGSQmzACl3t4xQ4szTg0gDRM7XtvGA=";
+      url = "https://github.com/yoriksar/cli/commit/7a55107ac23bb9e8a980f1a8724375f4c4ab032d.patch";
+      sha256 = "sha256-CSTxxDN8ngEQIxwcbO3MfgKnYwGGGYwpz9UhPEn5yXI=";
     })
   ];
 
-  vendorHash = "sha256-K8EYtsEOtNjMPiXR4brkvv8Gfl7naQOivkc2XSn+798=";
+  vendorHash = "sha256-Hrp+thG+o/unwh5eEVQwc31/JoMYeu7UAhTbGY1BWYI=";
 
   nativeBuildInputs = [installShellFiles];
 
