@@ -11,6 +11,8 @@
   nix = {
     configureBuildUsers = true;
     distributedBuilds = true;
+    linux-builder.enable = true;
+    settings.extra-trusted-users = ["no-such-user"];
     settings = {
       auto-optimise-store = true;
       builders-use-substitutes = true;
