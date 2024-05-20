@@ -24,7 +24,7 @@
       min-free = 10 * 1024 * 1024 * 1024;
       max-free = 50 * 1024 * 1024 * 1024;
     };
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
   };
   environment.etc."pam.d/sudo_local".text = ''
     auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so

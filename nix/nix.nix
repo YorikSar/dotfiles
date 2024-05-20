@@ -5,9 +5,13 @@
     nix-direnv.enable = true;
   };
 
-  home.file.".config/nix/nix.conf".text = ''
-    experimental-features = nix-command flakes repl-flake
-  '';
+  nix = {
+    package = pkgs.nixVersions.latest;
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
@@ -17,7 +21,7 @@
 
   home.packages = with pkgs; [
     lorri
-    nixUnstable
+    nixVersions.latest
     nixos-rebuild
     nix-output-monitor
   ];
@@ -33,7 +37,7 @@
         KeepAlive = true;
         RunAtLoad = true;
         EnvironmentVariables = {
-          PATH = "${pkgs.nixUnstable}/bin";
+          PATH = "${pkgs.nixVersions.latest}/bin";
         };
       };
     };
