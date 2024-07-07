@@ -14,10 +14,6 @@
     UseKeychain = "yes";
   };
 
-  home.packages = [
-    pkgs.element-desktop
-  ];
-
   # Replace default symlinking functionality with copying
   home.file."Applications/Home Manager Apps".enable = false;
   home.activation.copyApps = let
