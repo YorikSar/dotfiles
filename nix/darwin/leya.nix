@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   imports = [
     ../private/darwin/home.nix
     ../private/darwin/tweag.nix
@@ -11,7 +11,14 @@
   nix = {
     configureBuildUsers = true;
     distributedBuilds = true;
-    linux-builder.enable = true;
+    linux-builder = {
+      enable = true;
+      config = {
+        virtualisation.darwin-builder.memorySize = 8192;
+        virtualisation.cores = 4;
+      };
+      maxJobs = 4;
+    };
     optimise.automatic = true;
     settings.extra-trusted-users = ["no-such-user"];
     settings = {
