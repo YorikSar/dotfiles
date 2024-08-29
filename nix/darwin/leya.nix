@@ -14,7 +14,12 @@
     linux-builder = {
       enable = true;
       config = {
-        virtualisation.darwin-builder.memorySize = 8192;
+        virtualisation.darwin-builder = {
+          memorySize = 8 * 1024;
+          diskSize = 40 * 1024;
+          min-free = 4 * 1024 * 1024 * 1024;
+          max-free = 8 * 1024 * 1024 * 1024;
+        };
         virtualisation.cores = 4;
       };
       maxJobs = 4;
