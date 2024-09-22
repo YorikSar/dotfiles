@@ -3,6 +3,8 @@
     ../private/darwin/home.nix
     ../private/darwin/tweag.nix
   ];
+  system.stateVersion = 5;
+  ids.gids.nixbld = 30000;
   programs.zsh = {
     enable = true;
     promptInit = "setopt transientrprompt";
