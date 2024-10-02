@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   programs.git = {
     enable = true;
     userName = "Yuriy Taraday";
@@ -17,7 +17,33 @@
       "htmlcov"
     ];
     extraConfig = {
-      core.sshCommand = "/usr/bin/ssh"; # OpenSSH in nix doesn't support UseKeychain
+      # Use system OpenSSH that includes patches for Keychain support
+      core.sshCommand = lib.mkIf pkgs.stdenv.isDarwin "/usr/bin/ssh";
+      # Wrap ssh-keygen that doesn't integrate with Keychain by using ssh-add that does
+      gpg.ssh.program = lib.mkIf pkgs.stdenv.isDarwin (lib.getExe (pkgs.writeShellApplication {
+        name = "ssh-keygen-sign";
+        text = ''
+          args=("$@")
+          key=
+          for i in $(seq "$((''${#args[@]} - 1))"); do
+            if [ "''${args[$i]}" = "-f" ]; then
+              key="''${args[$((i+1))]%%.pub}"
+              break
+            fi
+          done
+          if [ -z "$key" ]; then
+            ssh-keygen "$@"
+            exit
+          fi
+          eval "$(ssh-agent)"
+          cleanup() {
+            eval "$(ssh-agent -k)"
+          }
+          trap cleanup EXIT
+          ssh-add --apple-use-keychain "$key"
+          ssh-keygen "$@"
+        '';
+      }));
       color = {
         diff = "auto";
         status = "auto";
