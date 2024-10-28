@@ -4,6 +4,7 @@
     ../private/darwin/tweag.nix
   ];
   system.stateVersion = 5;
+  networking.hostName = "leya";
   ids.gids.nixbld = 30000;
   programs.zsh = {
     enable = true;
