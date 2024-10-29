@@ -7,7 +7,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      import = [
+      general.import = [
         "${config.xdg.configHome}/alacritty/current_theme.toml"
       ];
       window.startup_mode = "Fullscreen";
