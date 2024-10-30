@@ -54,4 +54,16 @@ in {
       }
     ];
   };
+  # See https://github.com/tmux/tmux/issues/4162 and https://github.com/nix-community/home-manager/issues/5952
+  nixpkgs.overlays = [
+    (final: prev: {
+      tmuxPlugins = prev.tmuxPlugins // {
+        sensible = prev.tmuxPlugins.sensible.overrideAttrs (prev: {
+          postInstall = prev.postInstall + ''
+            sed -e 's:\$SHELL:/bin/zsh:g' -i $target/sensible.tmux
+          '';
+        });
+      };
+    })
+  ];
 }
