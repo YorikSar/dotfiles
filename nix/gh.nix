@@ -6,7 +6,4 @@
       aliases.co = "pr checkout";
     };
   };
-  xdg.configFile."gh/hosts.yml".source = (pkgs.formats.yaml {}).generate "gh-hosts.yml" {
-    "github.com".user = "YorikSar";
-  };
 }
