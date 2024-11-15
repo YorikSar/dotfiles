@@ -22,7 +22,7 @@ buildGoModule rec {
   patches = [
     (fetchpatch {
       url = "https://github.com/yoriksar/cli/commit/bae5c444689f97c2c7f110b62ec5ef8b96885b87.patch";
-      sha256 = "sha256-ryH+9jY4dmX+hsdcfqL6OT2jUno56rUDRlhVZQMy8bM=";
+      sha256 = "sha256-Fs799HK8UV55yKzEkNp+nTcE3BojEph6TFsPTYmAitI=";
     })
   ];
 
