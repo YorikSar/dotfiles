@@ -58,7 +58,7 @@
         branch = "true";
       };
       http.cookiefile = "/home/yorik/.gitcookies";
-      core.fsmonitor = "${pkgs.rs-git-fsmonitor}/bin/rs-git-fsmonitor";
+      core.fsmonitor = "true";
       core.untrackedCache = "true";
       tag.sort = "-version:refname";
       url."https://github.com/".insteadOf = "git@github.com:";
