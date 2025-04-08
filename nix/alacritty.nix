@@ -20,7 +20,7 @@
   xdg.configFile."alacritty/theme".source = pkgs.alacritty-theme;
   home.activation.alacritty-theme = lib.hm.dag.entryAfter ["writeBoundary"] ''
     if [ ! -e  "${config.xdg.configHome}/alacritty/current_theme.toml" ]; then
-      $DRY_RUN_CMD ln -s $VERBOSE_ARG "theme/solarized_dark.toml" "${config.xdg.configHome}/alacritty/current_theme.toml"
+      $DRY_RUN_CMD ln -s $VERBOSE_ARG "theme/share/alacritty-theme/solarized_dark.toml" "${config.xdg.configHome}/alacritty/current_theme.toml"
     fi
   '';
   services.dark-mode-notify.onSwitch = [
@@ -30,7 +30,7 @@
       else
         theme=dark
       fi
-      ln -fs "theme/solarized_''${theme}.toml" "${config.xdg.configHome}/alacritty/current_theme.toml"
+      ln -fs "theme/share/alacritty-theme/solarized_''${theme}.toml" "${config.xdg.configHome}/alacritty/current_theme.toml"
     ''
   ];
 }
