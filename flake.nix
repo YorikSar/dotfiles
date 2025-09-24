@@ -14,7 +14,7 @@
       flake = false;
     };
     darwin = {
-      url = "github:LnL7/nix-darwin/master";
+      url = "github:YorikSar/nix-darwin/fix-auto-allocate-uids";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database = {

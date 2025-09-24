@@ -9,12 +9,22 @@
 in {
   programs.ssh = {
     enable = true;
-    controlMaster = "auto";
-    controlPath = "~/.ssh/%C.ctl";
-    controlPersist = "yes";
-    serverAliveInterval = 5;
-    userKnownHostsFile = "~/.ssh/known_hosts ~/.ssh/hm_known_hosts";
+    enableDefaultConfig = false;
     matchBlocks = {
+      "*" = {
+        # defaults
+        forwardAgent = false;
+        addKeysToAgent = "no";
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        # custom stuff
+        compression = true;
+        controlMaster = "auto";
+        controlPath = "~/.ssh/%C.ctl";
+        controlPersist = "yes";
+        serverAliveInterval = 5;
+        userKnownHostsFile = "~/.ssh/known_hosts ~/.ssh/hm_known_hosts";
+      };
       "github.com" = {
         user = "git";
         identityFile = "~/.ssh/github.com";

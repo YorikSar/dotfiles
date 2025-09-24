@@ -10,9 +10,7 @@
     enable = true;
     promptInit = "setopt transientrprompt";
   };
-  services.nix-daemon.enable = true;
   nix = {
-    configureBuildUsers = true;
     distributedBuilds = true;
     linux-builder = {
       enable = true;

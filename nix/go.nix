@@ -5,7 +5,7 @@
 }: {
   programs.go = {
     enable = true;
-    goPath = "go";
+    env.GOPATH = "go";
   };
   programs.neovim = {
     extraConfig = ''

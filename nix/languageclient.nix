@@ -2,9 +2,25 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  LanguageClient-neovim-bin = pkgs.rustPlatform.buildRustPackage {
+    pname = "LanguageClient-neovim-bin";
+    inherit (LanguageClient-neovim) version src;
+
+    cargoPatches = [
+      ./languageclient-neovim.cargo.patch
+    ];
+
+    cargoHash = "sha256-43alR84MktYTmsKeUMm4gK8AjUIkGqcsuFeQPusBKD0=";
+  };
+  LanguageClient-neovim = pkgs.vimPlugins.LanguageClient-neovim.overrideAttrs (p: {
+    propagatedBuildInputs = [LanguageClient-neovim-bin];
+    preFixup = lib.replaceString (builtins.toString (lib.elemAt p.propagatedBuildInputs 0)) (builtins.toString LanguageClient-neovim-bin) (builtins.unsafeDiscardStringContext p.preFixup);
+    meta = p.meta // { broken = false; };
+  });
+in {
   programs.neovim = {
-    plugins = with pkgs.vimPlugins; [
+    plugins = [
       LanguageClient-neovim
     ];
     extraConfig = lib.mkBefore ''
