@@ -42,7 +42,10 @@
         plugin = nvim-treesitter-context;
         type = "lua";
         config = ''
-          require("treesitter-context").setup({})
+          require("treesitter-context").setup({
+            max_lines = 10,
+            min_window_height = 20,
+          })
         '';
       }
     ];
