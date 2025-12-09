@@ -13,5 +13,5 @@
     ../jsonnet.nix
   ];
 
-  programs.git.userEmail = lib.mkOverride 10 "yuriy.taraday@tweag.io";
+  programs.git.settings.user.email = lib.mkOverride 10 "yuriy.taraday@tweag.io";
 }

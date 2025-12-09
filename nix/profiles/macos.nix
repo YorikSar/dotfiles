@@ -20,7 +20,7 @@
     apps = pkgs.buildEnv {
       name = "home-manager-applications";
       paths = config.home.packages;
-      pathsToLink = "/Applications";
+      pathsToLink = ["/Applications"];
     };
     v = "\${VERBOSE_ARG:+-v}";
   in

@@ -1,13 +1,6 @@
 {pkgs, lib, ...}: {
   programs.git = {
     enable = true;
-    userName = "Yuriy Taraday";
-    userEmail = "yorik.sar@gmail.com";
-    aliases = {
-      co = "checkout";
-      pick = "cherry-pick";
-      "log-all" = "log --all --graph --pretty=tformat:'%C(auto)%h%d %s [%an,%cr]'";
-    };
     ignores = [
       "*.swp"
       "*.pyc"
@@ -16,7 +9,14 @@
       ".coverage"
       "htmlcov"
     ];
-    extraConfig = {
+    settings = {
+      user.name = "Yuriy Taraday";
+      user.email = "yorik.sar@gmail.com";
+      alias = {
+        co = "checkout";
+        pick = "cherry-pick";
+        "log-all" = "log --all --graph --pretty=tformat:'%C(auto)%h%d %s [%an,%cr]'";
+      };
       # Use system OpenSSH that includes patches for Keychain support
       core.sshCommand = lib.mkIf pkgs.stdenv.isDarwin "/usr/bin/ssh";
       # Wrap ssh-keygen that doesn't integrate with Keychain by using ssh-add that does

@@ -15,6 +15,6 @@
   programs.home-manager.enable = true;
   home.packages = with pkgs; [
     jq
-    du-dust
+    dust
   ];
 }
