@@ -8,6 +8,7 @@
       "build"
       ".coverage"
       "htmlcov"
+      ".DS_Store"
     ];
     settings = {
       user.name = "Yuriy Taraday";
