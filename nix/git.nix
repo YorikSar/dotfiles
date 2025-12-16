@@ -12,7 +12,7 @@
     ];
     settings = {
       user.name = "Yuriy Taraday";
-      user.email = "yorik.sar@gmail.com";
+      user.email = "yuriy@taraday.nl";
       alias = {
         co = "checkout";
         pick = "cherry-pick";
