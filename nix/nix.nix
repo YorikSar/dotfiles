@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, lib, ... }:
+{
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
@@ -16,7 +17,7 @@
 
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
-      (nvim-treesitter.withPlugins (p: [p.nix]))
+      (nvim-treesitter.withPlugins (p: [ p.nix ]))
       direnv-vim
     ];
   };
@@ -25,5 +26,14 @@
     nixVersions.latest
     nixos-rebuild
     nix-output-monitor
+  ];
+  nixpkgs.overlays = [
+    (final: prev: {
+      nix-zsh-completions = prev.nix-zsh-completions.overrideAttrs (old: {
+        postPatch = ''
+          rm _nixos-rebuild
+        '';
+      });
+    })
   ];
 }
