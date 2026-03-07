@@ -25,19 +25,8 @@
           require("nvim-surround").setup({})
         '';
       }
-      {
-        plugin = nvim-treesitter.withPlugins (p: [p.vimdoc]);
-        type = "lua";
-        config = ''
-          require('nvim-treesitter.configs').setup {
-            auto_install = false,
-            highlight = {
-              enable = true,
-              additional_vim_regex_highlighting = false,
-            };
-          }
-        '';
-      }
+      nvim-treesitter-parsers.vimdoc
+      nvim-treesitter-parsers.vimdoc.associatedQuery
       {
         plugin = nvim-treesitter-context;
         type = "lua";

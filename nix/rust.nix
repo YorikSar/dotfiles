@@ -3,8 +3,9 @@
     extraConfig = ''
       let g:LanguageClient_serverCommands['rust'] = ['rust-analyzer']
     '';
-    plugins = with pkgs.vimPlugins; [
-      (nvim-treesitter.withPlugins (p: [p.rust]))
+    plugins = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+      rust
+      rust.associatedQuery
     ];
   };
   home.packages = with pkgs; [

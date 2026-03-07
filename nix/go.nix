@@ -11,8 +11,9 @@
     extraConfig = ''
       let g:LanguageClient_serverCommands['go'] = ['gopls']
     '';
-    plugins = with pkgs.vimPlugins; [
-      (nvim-treesitter.withPlugins (p: [p.go]))
+    plugins = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+      go
+      go.associatedQuery
     ];
   };
   home.packages = with pkgs; [
