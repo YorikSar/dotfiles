@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.neovim = {
-    extraConfig = ''
-      let g:LanguageClient_serverCommands['nickel'] = ['nls']
+    initLua = ''
+      vim.lsp.enable('nickel_ls')
     '';
     plugins = with pkgs.vimPlugins; [
       vim-nickel

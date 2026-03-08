@@ -1,15 +1,16 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   programs.go = {
     enable = true;
-    env.GOPATH = "go";
+    env.GOPATH = "${config.home.homeDirectory}/go";
   };
   programs.neovim = {
-    extraConfig = ''
-      let g:LanguageClient_serverCommands['go'] = ['gopls']
+    initLua = ''
+      vim.lsp.enable('gopls')
     '';
     plugins = with pkgs.vimPlugins.nvim-treesitter-parsers; [
       go

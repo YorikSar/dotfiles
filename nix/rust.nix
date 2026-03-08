@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.neovim = {
-    extraConfig = ''
-      let g:LanguageClient_serverCommands['rust'] = ['rust-analyzer']
+    initLua = ''
+      vim.lsp.enable('rust-analyzer')
     '';
     plugins = with pkgs.vimPlugins.nvim-treesitter-parsers; [
       rust

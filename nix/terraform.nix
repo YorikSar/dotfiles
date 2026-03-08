@@ -4,10 +4,8 @@
   ...
 }: {
   programs.neovim = {
-    extraConfig = ''
-      let g:LanguageClient_serverCommands['hcl'] = ['terraform-ls','serve']
-      let g:LanguageClient_serverCommands['terraform'] = ['terraform-ls','serve']
-      let g:LanguageClient_serverCommands['terraform-vars'] = ['terraform-ls','serve']
+    initLua = ''
+      vim.lsp.enable('terraformls')
     '';
     plugins = with pkgs.vimPlugins.nvim-treesitter-parsers; [
       hcl

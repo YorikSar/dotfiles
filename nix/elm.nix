@@ -3,9 +3,8 @@
     plugins = with pkgs.vimPlugins; [
       vim-elm-syntax
     ];
-    extraConfig = ''
-      let g:LanguageClient_serverCommands['elm'] = ['elm-language-server']
-      let g:LanguageClient_rootMarkers['elm'] = ['elm.json']
+    initLua = ''
+      vim.lsp.enable('emlls')
     '';
   };
   home.packages = with pkgs.elmPackages; [

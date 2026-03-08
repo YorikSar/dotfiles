@@ -1,9 +1,11 @@
 {pkgs, ...}: {
   programs.neovim = {
+    initLua = ''
+      vim.lsp.enable('jsonnet_ls')
+    '';
     extraConfig = ''
       autocmd BufNewFile,BufRead *.jsonnet setf jsonnet
       autocmd BufNewFile,BufRead *.libsonnet setf jsonnet
-      let g:LanguageClient_serverCommands['jsonnet'] = ['jsonnet-language-server', '--lint', '--eval-diags']
     '';
     plugins = with pkgs.vimPlugins.nvim-treesitter-parsers; [
       jsonnet
