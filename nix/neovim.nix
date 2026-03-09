@@ -48,6 +48,12 @@
               vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
               vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
               vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = event.buf,
+                callback = function()
+                  vim.lsp.buf.format {async = false, id = event.data.client_id}
+                end,
+              })
             end,
           })
         '';
