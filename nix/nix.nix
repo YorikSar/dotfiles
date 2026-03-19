@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   programs.direnv = {
     enable = true;
@@ -16,6 +16,9 @@
   };
 
   programs.neovim = {
+    initLua = ''
+      vim.lsp.enable('nil_ls')
+    '';
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter-parsers.nix
       nvim-treesitter-parsers.nix.associatedQuery
@@ -27,5 +30,6 @@
     nixVersions.latest
     nixos-rebuild
     nix-output-monitor
+    nil
   ];
 }
