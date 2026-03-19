@@ -54,6 +54,7 @@
                   vim.lsp.buf.format {async = false, id = event.data.client_id}
                 end,
               })
+              vim.diagnostic.config({virtual_text = true})
             end,
           })
         '';
