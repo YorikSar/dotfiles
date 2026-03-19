@@ -63,7 +63,7 @@ in {
       (lib.mapAttrs (name: cfg: cfg.activationPackage))
       # cfgs => [{ system, name, value = activationPackage;}]
       (lib.mapAttrsToList (name: pkg: {
-        system = pkg.stdenv.system;
+        system = pkg.stdenv.hostPlatform.system;
         inherit name;
         value = pkg;
       }))

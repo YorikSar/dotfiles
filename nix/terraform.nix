@@ -14,7 +14,7 @@
       terraform.associatedQuery
     ];
   };
-  home.packages = with inputs.tf-nixpkgs.legacyPackages.${pkgs.system}; [
+  home.packages = with inputs.tf-nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [
     terraform
     terraform-ls
   ];
