@@ -28,13 +28,4 @@
     nixos-rebuild
     nix-output-monitor
   ];
-  nixpkgs.overlays = [
-    (final: prev: {
-      nix-zsh-completions = prev.nix-zsh-completions.overrideAttrs (old: {
-        postPatch = ''
-          rm _nixos-rebuild
-        '';
-      });
-    })
-  ];
 }
