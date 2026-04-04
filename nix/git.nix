@@ -74,4 +74,7 @@
     watchman
     git-crypt
   ];
+  nixpkgs.overlays = [
+    (final: prev: { edencommon = prev.edencommon.overrideAttrs { doCheck = false; }; })
+  ];
 }
