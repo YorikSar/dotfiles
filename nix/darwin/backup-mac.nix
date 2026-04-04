@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ../private/darwin/backup-mac.nix
   ];
@@ -16,7 +17,7 @@
       sandbox = true;
       min-free = 10 * 1024 * 1024 * 1024;
       max-free = 50 * 1024 * 1024 * 1024;
-      trusted-users = ["admin"];
+      trusted-users = [ "admin" ];
     };
     package = pkgs.nixVersions.latest;
   };
@@ -29,8 +30,8 @@
     sharedModules = [
       ../xcrun-subst.nix
       ../zsh.nix
-      {home.stateVersion = "24.05";}
+      { home.stateVersion = "24.05"; }
     ];
-    users.admin = {};
+    users.admin = { };
   };
 }

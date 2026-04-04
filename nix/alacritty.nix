@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   programs.alacritty = {
     enable = true;
     settings = {
@@ -18,7 +19,7 @@
     pkgs.hack-font
   ];
   xdg.configFile."alacritty/theme".source = pkgs.alacritty-theme;
-  home.activation.alacritty-theme = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  home.activation.alacritty-theme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     if [ ! -e  "${config.xdg.configHome}/alacritty/current_theme.toml" ]; then
       $DRY_RUN_CMD ln -s $VERBOSE_ARG "theme/share/alacritty-theme/solarized_dark.toml" "${config.xdg.configHome}/alacritty/current_theme.toml"
     fi

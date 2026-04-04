@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   solarized = ''
     # default statusbar colors
     set-option -g status-style bg=black,fg=yellow
@@ -23,7 +24,8 @@
     # clock
     set-window-option -g clock-mode-colour green #green
   '';
-in {
+in
+{
   programs.tmux = {
     enable = true;
     escapeTime = 0;
@@ -31,13 +33,11 @@ in {
     keyMode = "vi";
     terminal = "tmux-256color";
     secureSocket = false;
-    extraConfig =
-      solarized
-      + ''
-        set-option -g detach-on-destroy off
+    extraConfig = solarized + ''
+      set-option -g detach-on-destroy off
 
-        set -ga terminal-overrides ",xterm-256color:Tc"
-      '';
+      set -ga terminal-overrides ",xterm-256color:Tc"
+    '';
     plugins = [
       {
         plugin = pkgs.tmuxPlugins.resurrect;

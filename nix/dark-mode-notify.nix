@@ -3,17 +3,19 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.services.dark-mode-notify;
-in {
+in
+{
   options.services.dark-mode-notify = {
     enable = lib.mkEnableOption "dark-mode-notify service";
 
-    package = lib.mkPackageOption pkgs "dark-mode-notify" {};
+    package = lib.mkPackageOption pkgs "dark-mode-notify" { };
 
     onSwitch = lib.mkOption {
       type = lib.types.listOf lib.types.lines;
-      default = [];
+      default = [ ];
       example = [
         ''
           if [ "$DARKMODE" -eq 0 ]; then
@@ -34,11 +36,19 @@ in {
       readOnly = true;
       default = pkgs.writeShellApplication {
         name = "dark-mode-onswitch";
-        text = lib.concatStringsSep "\n" (map (script: "${lib.getExe (pkgs.writeShellApplication {
-            name = "dark-mode-onswitch-script.sh";
-            text = script;
-          })} || true")
-          cfg.onSwitch);
+        text = lib.concatStringsSep "\n" (
+          map (
+            script:
+            "${
+              lib.getExe (
+                pkgs.writeShellApplication {
+                  name = "dark-mode-onswitch-script.sh";
+                  text = script;
+                }
+              )
+            } || true"
+          ) cfg.onSwitch
+        );
       };
     };
   };

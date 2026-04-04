@@ -2,7 +2,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   programs.neovim = {
     initLua = ''
       vim.lsp.enable('terraformls')

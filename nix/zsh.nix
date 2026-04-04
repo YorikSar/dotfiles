@@ -1,4 +1,5 @@
-{pkgs, lib, ...}: {
+{ pkgs, lib, ... }:
+{
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;

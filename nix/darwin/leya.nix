@@ -1,4 +1,5 @@
-{pkgs, lib, ...}: {
+{ pkgs, lib, ... }:
+{
   imports = [
     ../private/darwin/home.nix
     ../private/darwin/tweag.nix
@@ -27,11 +28,11 @@
     };
     nrBuildUsers = 1;
     optimise.automatic = true;
-    settings.extra-trusted-users = ["no-such-user"];
+    settings.extra-trusted-users = [ "no-such-user" ];
     settings = {
       auto-allocate-uids = true;
       builders-use-substitutes = true;
-      experimental-features = ["auto-allocate-uids"];
+      experimental-features = [ "auto-allocate-uids" ];
       extra-platforms = [
         "x86_64-darwin"
         "aarch64-darwin"

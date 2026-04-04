@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ../xcrun-subst.nix
     ../alacritty.nix
@@ -16,15 +17,16 @@
 
   # Replace default symlinking functionality with copying
   home.file."Applications/Home Manager Apps".enable = false;
-  home.activation.copyApps = let
-    apps = pkgs.buildEnv {
-      name = "home-manager-applications";
-      paths = config.home.packages;
-      pathsToLink = ["/Applications"];
-    };
-    v = "\${VERBOSE_ARG:+-v}";
-  in
-    lib.hm.dag.entryAfter ["linkGeneration"] ''
+  home.activation.copyApps =
+    let
+      apps = pkgs.buildEnv {
+        name = "home-manager-applications";
+        paths = config.home.packages;
+        pathsToLink = [ "/Applications" ];
+      };
+      v = "\${VERBOSE_ARG:+-v}";
+    in
+    lib.hm.dag.entryAfter [ "linkGeneration" ] ''
       baseDir="$HOME/Applications/Home Manager Apps"
       $DRY_RUN_CMD mkdir -p "$baseDir"
       shopt -s nullglob

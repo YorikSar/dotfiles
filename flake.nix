@@ -23,50 +23,53 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    darwin,
-    ...
-  } @ inputs: {
-    lib = import ./nix/lib inputs;
-    homeProfiles = with nixpkgs.lib;
-      listToAttrs (map
-        (
-          fileName:
-            nameValuePair (removeSuffix ".nix" fileName) (import ./nix/profiles/${fileName})
-        )
-        (attrNames (builtins.readDir ./nix/profiles)));
-    homeConfigurations = self.lib.hmConfigurations "aarch64-darwin" {
-      yorik = self.homeProfiles.home;
-      mira = self.homeProfiles.mirantis;
-      tweag = self.homeProfiles.tweag;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      darwin,
+      ...
+    }@inputs:
+    {
+      lib = import ./nix/lib inputs;
+      homeProfiles =
+        with nixpkgs.lib;
+        listToAttrs (
+          map (fileName: nameValuePair (removeSuffix ".nix" fileName) (import ./nix/profiles/${fileName})) (
+            attrNames (builtins.readDir ./nix/profiles)
+          )
+        );
+      homeConfigurations = self.lib.hmConfigurations "aarch64-darwin" {
+        yorik = self.homeProfiles.home;
+        mira = self.homeProfiles.mirantis;
+        tweag = self.homeProfiles.tweag;
+      };
+      darwinConfigurations = {
+        leya = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = [ ./nix/darwin/leya.nix ];
+        };
+        backup-mac = darwin.lib.darwinSystem {
+          system = "x86_64-darwin";
+          modules = [
+            ./nix/darwin/backup-mac.nix
+            home-manager.darwinModules.home-manager
+          ];
+        };
+      };
+      checks =
+        let
+          hmChecks = self.lib.homeConfigurationsChecks self.homeConfigurations;
+          darwinChecks = {
+            aarch64-darwin.leya = self.darwinConfigurations.leya.system;
+            x86_64-darwin.backup-mac = self.darwinConfigurations.backup-mac.system;
+          };
+        in
+        hmChecks
+        // {
+          aarch64-darwin = hmChecks.aarch64-darwin // darwinChecks.aarch64-darwin;
+          inherit (darwinChecks) x86_64-darwin;
+        };
     };
-    darwinConfigurations = {
-      leya = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [./nix/darwin/leya.nix];
-      };
-      backup-mac = darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
-        modules = [
-          ./nix/darwin/backup-mac.nix
-          home-manager.darwinModules.home-manager
-        ];
-      };
-    };
-    checks = let
-      hmChecks = self.lib.homeConfigurationsChecks self.homeConfigurations;
-      darwinChecks = {
-        aarch64-darwin.leya = self.darwinConfigurations.leya.system;
-        x86_64-darwin.backup-mac = self.darwinConfigurations.backup-mac.system;
-      };
-    in
-      hmChecks
-      // {
-        aarch64-darwin = hmChecks.aarch64-darwin // darwinChecks.aarch64-darwin;
-        inherit (darwinChecks) x86_64-darwin;
-      };
-  };
 }

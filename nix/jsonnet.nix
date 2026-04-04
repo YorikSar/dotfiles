@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.neovim = {
     initLua = ''
       vim.lsp.enable('jsonnet_ls')

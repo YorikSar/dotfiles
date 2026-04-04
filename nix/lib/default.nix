@@ -2,7 +2,8 @@
   home-manager,
   nixpkgs,
   ...
-} @ inputs: let
+}@inputs:
+let
   hmNixpkgsRegistry = {
     home.file.".config/nix/registry.json".text = builtins.toJSON {
       version = 2;
@@ -27,46 +28,51 @@
       ];
     };
   };
-in {
-  hmConfigurations = system: let
-    pkgs = nixpkgs.legacyPackages.${system};
-    buildConfig = name: profile:
-      home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          profile
-          hmNixpkgsRegistry
-          {
-            home = {
-              username = name;
-              homeDirectory =
-                if pkgs.stdenv.isDarwin
-                then "/Users/${name}"
-                else "/home/${name}";
-              stateVersion = "22.05";
-            };
-            # Fails to build again, see https://github.com/NixOS/nix/issues/8485
-            manual.manpages.enable = false;
-          }
-        ];
-        extraSpecialArgs = {
-          inherit inputs;
+in
+{
+  hmConfigurations =
+    system:
+    let
+      pkgs = nixpkgs.legacyPackages.${system};
+      buildConfig =
+        name: profile:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            profile
+            hmNixpkgsRegistry
+            {
+              home = {
+                username = name;
+                homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${name}" else "/home/${name}";
+                stateVersion = "22.05";
+              };
+              # Fails to build again, see https://github.com/NixOS/nix/issues/8485
+              manual.manpages.enable = false;
+            }
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
         };
-      };
-  in
+    in
     attrs: builtins.mapAttrs buildConfig attrs;
-  homeConfigurationsChecks = cfgs: let
-    lib = nixpkgs.lib;
-  in
+  homeConfigurationsChecks =
+    cfgs:
+    let
+      lib = nixpkgs.lib;
+    in
     lib.trivial.pipe cfgs [
       # drop everything except activationPackage
       (lib.mapAttrs (name: cfg: cfg.activationPackage))
       # cfgs => [{ system, name, value = activationPackage;}]
-      (lib.mapAttrsToList (name: pkg: {
-        system = pkg.stdenv.hostPlatform.system;
-        inherit name;
-        value = pkg;
-      }))
+      (lib.mapAttrsToList (
+        name: pkg: {
+          system = pkg.stdenv.hostPlatform.system;
+          inherit name;
+          value = pkg;
+        }
+      ))
       # [{ system, name, value}] => {system = [{ system, name, value}]}
       (lib.groupBy (systemNameValue: systemNameValue.system))
       # => { system.name = activationPackage }

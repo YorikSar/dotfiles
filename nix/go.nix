@@ -3,7 +3,8 @@
   inputs,
   config,
   ...
-}: {
+}:
+{
   programs.go = {
     enable = true;
     env.GOPATH = "${config.home.homeDirectory}/go";
@@ -21,9 +22,10 @@
     gotools
     gopls
     (
-      if !stdenv.isDarwin
-      then golangci-lint
-      else inputs.nixpkgs.legacyPackages.aarch64-darwin.golangci-lint
+      if !stdenv.isDarwin then
+        golangci-lint
+      else
+        inputs.nixpkgs.legacyPackages.aarch64-darwin.golangci-lint
     )
     clang # looks like gopls needs this
   ];
