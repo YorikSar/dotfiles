@@ -11,6 +11,7 @@
       "htmlcov"
       ".DS_Store"
     ];
+    signing.format = "ssh";
     settings = {
       user.name = "Yuriy Taraday";
       user.email = "yuriy@taraday.nl";

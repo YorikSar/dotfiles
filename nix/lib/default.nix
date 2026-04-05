@@ -45,7 +45,7 @@ in
               home = {
                 username = name;
                 homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${name}" else "/home/${name}";
-                stateVersion = "22.05";
+                stateVersion = "25.11";
               };
               # Fails to build again, see https://github.com/NixOS/nix/issues/8485
               manual.manpages.enable = false;
