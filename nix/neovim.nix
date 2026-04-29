@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -12,6 +11,9 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
+    # Legacy pre-26.05 defaults
+    withRuby = true;
+    withPython3 = true;
     extraConfig = builtins.readFile ./extraConfig.vim;
     plugins = with pkgs.vimPlugins; [
       vim-solarized8
@@ -83,4 +85,9 @@
       find "$TMPDIR/nvim."* -type s -name 'nvim.*' -exec ${lib.getExe pkgs.neovim-remote} --nostart --servername '{}' -c "set bg=$theme" \;
     ''
   ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "vim-solarized8"
+    ];
 }

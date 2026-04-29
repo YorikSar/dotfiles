@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  lib,
   ...
 }:
 {
@@ -20,7 +21,8 @@
   };
   home.packages = with pkgs; [
     gotools
-    gopls
+    # gopls includes modernize binary that conflicts with gotools
+    (lib.hiPrio gopls)
     (
       if !stdenv.isDarwin then
         golangci-lint
