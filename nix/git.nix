@@ -76,6 +76,18 @@
     git-crypt
   ];
   nixpkgs.overlays = [
+    # Make sure we can build edencommon, dependency of watchman, tests don't work on macOS with auto-allocate-uid
     (final: prev: { edencommon = prev.edencommon.overrideAttrs { doCheck = false; }; })
+    # Port of https://github.com/NixOS/nixpkgs/pull/523139 for folly, one of watchman deps
+    (final: prev: {
+      folly = prev.folly.overrideAttrs (old: {
+        patches = old.patches ++ [
+          (final.fetchpatch2 {
+            url = "https://github.com/facebook/folly/commit/fdde9bc360d525a1b2889b9ba89d671c3a13e72e.patch?full_index=1";
+            hash = "sha256-+1XJRAl4o9YubjqdIgQZpyrMmcb2imBfQUmiHNmFMRE=";
+          })
+        ];
+      });
+    })
   ];
 }

@@ -12,24 +12,24 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "*" = {
         # defaults
-        forwardAgent = false;
-        addKeysToAgent = "no";
-        serverAliveCountMax = 3;
-        hashKnownHosts = false;
+        ForwardAgent = false;
+        AddKeysToAgent = "no";
+        ServerAliveCountMax = 3;
+        HashKnownHosts = false;
         # custom stuff
-        compression = true;
-        controlMaster = "auto";
-        controlPath = "~/.ssh/%C.ctl";
-        controlPersist = "yes";
-        serverAliveInterval = 5;
-        userKnownHostsFile = "~/.ssh/known_hosts ~/.ssh/hm_known_hosts";
+        Compression = true;
+        ControlMaster = "auto";
+        ControlPath = "~/.ssh/%C.ctl";
+        ControlPersist = "yes";
+        ServerAliveInterval = 5;
+        UserKnownHostsFile = "~/.ssh/known_hosts ~/.ssh/hm_known_hosts";
       };
       "github.com" = {
-        user = "git";
-        identityFile = "~/.ssh/github.com";
+        User = "git";
+        IdentityFile = "~/.ssh/github.com";
       };
     };
   };
