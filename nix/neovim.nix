@@ -85,9 +85,5 @@
       find "$TMPDIR/nvim."* -type s -name 'nvim.*' -exec ${lib.getExe pkgs.neovim-remote} --nostart --servername '{}' -c "set bg=$theme" \;
     ''
   ];
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "vim-solarized8"
-    ];
+  nixpkgs.config.allowUnfreePackages = [ "vim-solarized8" ];
 }
